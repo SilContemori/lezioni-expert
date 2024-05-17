@@ -1,0 +1,100 @@
+.container{
+	
+  	background-color: rgb(255, 254, 200);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+
+.form-container {
+	background-color: #FFFFFF;
+	border: #282828 solid 1px;
+	padding: 3rem;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	gap: 3rem;
+}
+
+
+
+.form{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+/*	gap: 1rem;*/
+}
+
+.title{
+	color: #AE4327;
+}
+
+.input-div{
+	display: flex;
+	flex-direction: column;
+	gap: 0.1rem;
+	margin-bottom: 1rem;
+}
+
+.input {
+	padding: 0.5rem 0.5rem;
+	border-radius: 5px;
+}
+
+.btn-div{
+	margin: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0.5rem;
+	width: 100%;
+	
+}
+
+.btn-form{
+	text-decoration: none;
+	padding: 0.5rem;
+	width: 100%;
+	border: none;
+	border-radius: 5px;
+	text-align: center;
+	font-size: 1rem;
+	font-weight: 500;
+	border: #AE4327 solid 2px;
+    transition-duration: 100ms;
+    transition-property: all;
+    /* transition-behavior: ; */
+    background-color: #FFFFFF;
+}
+
+.btn-form:hover {
+	cursor: pointer;
+}
+
+.btn-login {
+	background-color: #AE4327;
+	color: #FFFFFF;
+}
+.btn-login:hover {
+	background-color: #FFFFFF;
+	color: #AE4327;
+	border: #AE4327 solid 2px;
+}
+
+.btn-register{
+	border: #AE4327 solid 2px;
+	color: #AE4327;
+}
+.btn-register:hover {
+/*	border: #AE4327 solid 2px;*/
+	color: #FFFFFF;
+	background-color: #AE4327;
+}
+
+

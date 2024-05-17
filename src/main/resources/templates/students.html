@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Students</title>
+	<link rel="stylesheet" href="/css/stile.css" />
+	<link rel="stylesheet" href="/css/global.css" />
+</head>
+
+<body>
+	<header>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+		<div th:unless="${user}">
+			<a href="/login">Login</a>
+		</div>
+	</header>
+	
+	
+	<a 	href="/">
+		<div><img src="/images/titolo.png" width="30%" /></div>
+	</a>
+
+	<h2>Studenti</h2>
+	<div th:if="${students==null || students.isEmpty()}">Non ci sono studenti nel sistema</div>
+	<ul>
+		<li th:each="student : ${students}">
+			<a th:href="@{'/student' + '/' + ${student.id}}"
+				th:text="${student.name} + ' '+ ${student.surname}">Up! (2000)</a>
+		</li>
+	</ul>
+</body>
+
+</html>

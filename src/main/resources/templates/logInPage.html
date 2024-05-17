@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="/css/authPage.css">
+	<link rel="stylesheet" href="/css/global.css" />
+</head>
+
+<body>
+	<a 	href="/">
+			<div><img src="/images/titolo.png" width="30%" /></div>
+	</a>
+	<div class="container">
+		
+	<div class="form-container">
+		<h1 class="title">Login</h1>
+		<form class="form" th:action="@{/login}" method="POST">
+				<div class="input-div">			
+					<label for="username">Username:</label>
+					<input placeholder="Insert username..." class="input input-username" name="username" type="text" required />
+				</div>
+				<div class="input-div">
+					<label for="username">Password:</label>				
+					<input placeholder="Insert password..." class="input input-password"  name="password" type="password" required />
+				</div>
+				<div>
+					<span th:if="${param.error != null}">Username o password errati</span>
+				</div>
+				<div class="btn-div">
+				<button class="btn-form btn-login" type="submit">Login</button>
+				<a class="btn-form btn-register" th:href="@{/register}">Sing up</a>
+				</div>
+		</form>
+	</div>
+	</div>
+</body>
+
+</html>
