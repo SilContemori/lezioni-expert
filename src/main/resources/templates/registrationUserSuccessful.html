@@ -7,20 +7,15 @@
 </head>
 
 <body>
-	<header>
+	<header class ="header">
+		<a 	href="/">
+			<div><img src="/images/titolo.png" width="30%" /></div>
+		</a>
 		<div th:if="${userDetails}">
 			<span th:text="${userDetails.username}"></span>
 			<a href="/logout">Logout</a>
 		</div>
-<!--		<div th:unless="${user}">-->
-<!--			<a href="/login">Login</a>-->
-<!--		</div>-->
-	</header>
-	
-	<a 	href="/">
-		<div><img src="/images/titolo.png" width="30%" /></div>
-	</a>
-
+	</header>	
 	<h2>Congratulazioni ti sei registrato!</h2>
 	<div>
 		<span>Nome: </span>

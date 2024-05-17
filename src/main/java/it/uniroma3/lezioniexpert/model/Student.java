@@ -14,7 +14,6 @@ public class Student {
 	private String name;
 	@NotNull
 	private String surname;
-	@NotNull
 	private Integer age;
 	private String description;
 	@ManyToMany

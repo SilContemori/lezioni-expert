@@ -3,33 +3,33 @@
 	<head>
 		<title>Student</title>
 		<link rel="stylesheet" href="/css/global.css" />
+		<link rel="stylesheet" href="/css/student.css" />
 	</head>
 	<body>
-		<header>
+		<header class="header">
 			<a 	href="/">
-				<div><img src="/images/titolo.png" width="30%" /></div>
+				<div class="title"><img src="/images/titolo.png" width="30%" /></div>
 			</a>
-<!--			<div th:if="${userDetails}">-->
-<!--				<span th:text="${userDetails.username}"></span>-->
-<!--				<a href="/logout">Logout</a>-->
-<!--			</div>-->
-<!--			<div th:unless="${user}">-->
-<!--				<a href="/login">Login</a>-->
-<!--			</div>-->
 		<div th:if="${userDetails}">
 			<span th:text="${userDetails.username}"></span>
 			<a href="/logout">Logout</a>
 		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
+
 		</header>
 		
 		<h2>Dettagli Studente</h2>
+		<div class="container">
+			<div class="image"><img src="/images/uomo.png">
+		</div>
 		<div th:if="${student}">
-			<span th:text="${student.name}+' '+${student.surname}"></span>
-			<span th:text="${student.age}"></span>
-			<span th:text="${student.description}"></span>
+			
+			<span th:text="'Nome: '+ ${student.name}"></span>
+			<br>
+			<span th:text="'Cognome: '+ ${student.surname}"></span>
+			<br>
+			<span th:text="'Età: '+${student.age}"></span>
+			<br>
+			<span th:text="'Descrizione: '+${student.description}"></span>
 		</div>
 <!--		<div th:unless="${artist}">Non esiste</div>-->
 

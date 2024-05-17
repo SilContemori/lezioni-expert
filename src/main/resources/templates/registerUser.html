@@ -8,10 +8,10 @@
 	<link rel="stylesheet" href="/css/global.css" />
 </head>
 <body>
-	<a 	href="/">
-		<div><img src="/images/titolo.png" width="30%" /></div>
-	</a>
-	 <header>
+	 <header class="header">
+		<a 	href="/">
+			<div><img src="/images/titolo.png" width="30%" /></div>
+		</a>
 		<div th:if="${userDetails}">
 			<span th:text="${userDetails.username}"></span>
 			<a href="/logout">Logout</a>

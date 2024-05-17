@@ -1,0 +1,24 @@
+.header  {
+	background-color: rgb(255, 254, 200);;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+	padding: 1rem 4rem;
+}
+
+.container{
+	width: 100%;
+    display: flex;
+    flex-direction: row;  
+    flex-wrap: wrap; 
+    gap: 1rem;
+}
+
+ .image{
+	width: 150px;
+ }
+
+img {
+	width: 100%;
+}

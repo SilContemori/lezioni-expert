@@ -14,7 +14,6 @@ public class Professor {
 	@NotNull
 	private String surname;
 	private String description;
-	@NotNull
 	private Integer age;
 	@ManyToMany(mappedBy="teachers")
 	private List<Student> students;
