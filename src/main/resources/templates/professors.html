@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Professors</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/students.css" />
+  </head>
+
+  <body>
+    <header class="header">
+      <a href="/">
+        <div class="title">
+          <img src="/images/titoloLezioni.png" width="30%" />
+        </div>
+      </a>
+      <div th:if="${userDetails}">
+        <span th:text="${userDetails.username}"></span>
+        <a href="/logout">Logout</a>
+      </div>
+    </header>
+
+    <h2>Professors</h2>
+    <div th:if="${professors==null || professors.isEmpty()}">
+      Non ci sono professori nel sistema
+    </div>
+    <ul>
+      <div class="container">
+        <li th:each="professor: ${professors}">
+          <div class="image">
+            <img src="/images/uomo.png" />
+            <a
+              th:href="@{'/professor' + '/' + ${professor.id}}"
+              th:text="${professor.name} + ' '+ ${professor.surname}"
+            ></a>
+          </div>
+        </li>
+      </div>
+    </ul>
+  </body>
+</html>

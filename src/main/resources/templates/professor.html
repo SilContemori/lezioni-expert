@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Student</title>
+		<link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+		<link rel="stylesheet" href="/css/student.css" />
+	</head>
+	<body>
+		<header class="header">
+			<a 	href="/">
+				<div class="title"><img src="/images/titoloLezioni.png" width="30%" /></div>
+			</a>
+		<div th:if="${userDetails}">
+			<span th:text="${userDetails.username}"></span>
+			<a href="/logout">Logout</a>
+		</div>
+
+		</header>
+		
+		<h2>Dettagli Professor</h2>
+		<div class="container">
+			<div class="image"><img src="/images/uomo.png">
+		</div>
+		<div th:if="${professor}">
+			
+			<span th:text="'Nome: '+ ${professor.name}"></span>
+			<br>
+			<span th:text="'Cognome: '+ ${professor.surname}"></span>
+			<br>
+			<span th:text="'Età: '+${professor.age}"></span>
+			<br>
+			<span th:text="'Descrizione: '+${professor.description}"></span>
+		</div>
+<!--		<div th:unless="${artist}">Non esiste</div>-->
+
+	</body>
+</html>
