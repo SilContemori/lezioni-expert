@@ -1,7 +1,6 @@
 package it.uniroma3.lezioniexpert.model;
 
 import java.util.List;
-import java.util.Objects;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -12,8 +11,8 @@ public class Announcement {
 	private Long id;
 	@NotNull
 	private String location;
-	@ManyToOne
-	private Student student;
+	// @ManyToOne
+	// private Student student;
 	@ManyToOne
 	private Professor professor;
 	private Integer HourlyRate;//budget se per studente
@@ -25,35 +24,11 @@ public class Announcement {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	public Student getStudet() {
-		return student;
-	}
-	public void setStudet(Student studet) {
-		this.student = studet;
-	}
 	public String getLocation() {
 		return location;
 	}
 	public void setLocation(String location) {
 		this.location = location;
-	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(HourlyRate, location, professor, student, subjects);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Announcement other = (Announcement) obj;
-		return Objects.equals(HourlyRate, other.HourlyRate) && Objects.equals(location, other.location)
-				&& Objects.equals(professor, other.professor) && Objects.equals(student, other.student)
-				&& Objects.equals(subjects, other.subjects);
 	}
 	public Professor getProfessor() {
 		return professor;
@@ -73,5 +48,55 @@ public class Announcement {
 	public void setSubjects(List<Subject> subjects) {
 		this.subjects = subjects;
 	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((location == null) ? 0 : location.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((HourlyRate == null) ? 0 : HourlyRate.hashCode());
+		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Announcement other = (Announcement) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (location == null) {
+			if (other.location != null)
+				return false;
+		} else if (!location.equals(other.location))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
+			return false;
+		if (HourlyRate == null) {
+			if (other.HourlyRate != null)
+				return false;
+		} else if (!HourlyRate.equals(other.HourlyRate))
+			return false;
+		if (subjects == null) {
+			if (other.subjects != null)
+				return false;
+		} else if (!subjects.equals(other.subjects))
+			return false;
+		return true;
+	}
+	
+
+
 
 }

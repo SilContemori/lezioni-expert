@@ -1,6 +1,5 @@
 package it.uniroma3.lezioniexpert.model;
 import java.util.List;
-import java.util.Objects;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
@@ -13,13 +12,60 @@ public class Subject {
 	private String livello;
 	@NotNull
 	private String nome;
-	@ManyToMany(mappedBy="subjects")
-	private List<Student> students;
 	@ManyToMany(mappedBy="teachings")
 	private List<Professor> professor;
 	@ManyToMany(mappedBy="subjects")
 	private List<Announcement> announcements;
 	
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((livello == null) ? 0 : livello.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
+		result = prime * result + ((announcements == null) ? 0 : announcements.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Subject other = (Subject) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (livello == null) {
+			if (other.livello != null)
+				return false;
+		} else if (!livello.equals(other.livello))
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (professor == null) {
+			if (other.professor != null)
+				return false;
+		} else if (!professor.equals(other.professor))
+			return false;
+		if (announcements == null) {
+			if (other.announcements != null)
+				return false;
+		} else if (!announcements.equals(other.announcements))
+			return false;
+		return true;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -38,12 +84,6 @@ public class Subject {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public List<Student> getStudents() {
-		return students;
-	}
-	public void setStudents(List<Student> students) {
-		this.students = students;
-	}
 	public List<Professor> getProfessor() {
 		return professor;
 	}
@@ -56,24 +96,6 @@ public class Subject {
 	public void setAnnouncements(List<Announcement> announcements) {
 		this.announcements = announcements;
 	}
-	@Override
-	public int hashCode() {
-		return Objects.hash(announcements, livello, nome, professor, students);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Subject other = (Subject) obj;
-		return Objects.equals(announcements, other.announcements) && Objects.equals(livello, other.livello)
-				&& Objects.equals(nome, other.nome) && Objects.equals(professor, other.professor)
-				&& Objects.equals(students, other.students);
-	}
-	
 	
 
 }
