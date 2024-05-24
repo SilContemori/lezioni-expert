@@ -1,5 +1,6 @@
 package it.uniroma3.lezioniexpert.model;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.List;
@@ -9,12 +10,14 @@ public class Professor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
-	@NotNull
+	@NotBlank
 	private String name;
-	@NotNull
+	@NotBlank
 	private String surname;
 	private String description;
 	private Integer age;
+	@NotBlank
+	private String email;
 	@ManyToMany
 	private List<Subject> teachings;
 	@ManyToMany
