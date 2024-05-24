@@ -16,7 +16,7 @@ public class Announcement {
 	private Student student;
 	@ManyToOne
 	private Professor professor;
-	private Integer HourlyRate;
+	private Integer HourlyRate;//budget se per studente
 	@ManyToMany
 	private List<Subject> subjects;
 	public Long getId() {

@@ -3,14 +3,15 @@
 
 <head>
 	<title>Students</title>
+	<link rel="stylesheet" href="/css/globalLezioniExpert.css"/>
 	<link rel="stylesheet" href="/css/students.css" />
-	<link rel="stylesheet" href="/css/global.css" />
+	
 </head>
 
 <body>
 	<header class="header">
 	<a href="/">
-		<div class="title" ><img src="/images/titolo.png" width="30%" /></div>
+		<div class="title" ><img src="/images/titoloLezioni.png" width="30%" /></div>
 	</a>
 		<div th:if="${userDetails}">
 			<span th:text="${userDetails.username}"></span>
