@@ -3,3 +3,4 @@ insert into student(id,name,surname,age,description) values(nextval('student_seq
 
 
 insert into professor(id,name,surname,description,age) values(nextval('professor_seq'),'Aldo','Bianchi','laureato in ingegneria',25)
+insert into professor(id,name,surname,description,age) values(nextval('professor_seq'),'Gigi','Nero','laureato in scienze delle zoologie marine',85)
