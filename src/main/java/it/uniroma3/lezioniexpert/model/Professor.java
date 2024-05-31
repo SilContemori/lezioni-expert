@@ -10,14 +10,17 @@ public class Professor {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+	
 	@NotBlank
 	private String name;
 	@NotBlank
 	private String surname;
-	private String description;
-	private Integer age;
 	@NotBlank
 	private String email;
+	
+	private String description;
+	private Integer age;
+
 	@ManyToMany
 	private List<Subject> teachings;
 	@ManyToMany
@@ -139,5 +142,12 @@ public class Professor {
 	public void setAnnouncements(List<Announcement> announcements) {
 		this.announcements = announcements;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
 
 }

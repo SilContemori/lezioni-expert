@@ -30,33 +30,17 @@ public class ProfessorService {
 		return professorRepository.findAll();
 	}
 
-    /**
-     * This method retrieves a User from the DB based on its ID.
-     * @param id the id of the User to retrieve from the DB
-     * @return the retrieved User, or null if no User with the passed ID could be found in the DB
-     */
     @Transactional
     public Professor getProfessor(Long id) {
         Optional<Professor> result = this.professorRepository.findById(id);
         return result.orElse(null);
     }
 
-    /**
-     * This method saves a User in the DB.
-     * @param user the User to save into the DB
-     * @return the saved User
-     * @throws DataIntegrityViolationException if a User with the same username
-     *                              as the passed User already exists in the DB
-     */
     @Transactional
     public Professor saveProfessor(Professor professor) {
         return this.professorRepository.save(professor);
     }
 
-    /**
-     * This method retrieves all Users from the DB.
-     * @return a List with all the retrieved Users
-     */
     @Transactional
     public List<Professor> getAllProfessors() {
         List<Professor> result = new ArrayList<>();
