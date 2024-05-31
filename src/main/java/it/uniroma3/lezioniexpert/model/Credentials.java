@@ -12,6 +12,7 @@ public class Credentials {
 
 	public static final String DEFAULT_ROLE = "DEFAULT";
 	public static final String ADMIN_ROLE = "ADMIN";
+	public static final String PROFESSOR = "PROFESSOR";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,6 +24,18 @@ public class Credentials {
 	@OneToOne(cascade = CascadeType.ALL)
 	private User user;
 	
+	@OneToOne(cascade = CascadeType.ALL)
+	private Professor professor;
+	
+	public Professor getProfessor() {
+		return professor;
+	}
+
+	public void setProfessor(Professor professor) {
+		this.professor = professor;
+		this.setRole(PROFESSOR);
+	}
+
 	public String getUsername() {
 		return username;
 	}

@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.lezioniexpert.model.Credentials;
+import it.uniroma3.lezioniexpert.model.Professor;
 import it.uniroma3.lezioniexpert.model.User;
 import it.uniroma3.lezioniexpert.service.CredentialsService;
+import it.uniroma3.lezioniexpert.service.ProfessorService;
 import it.uniroma3.lezioniexpert.service.UserService;
 import jakarta.validation.Valid;
 
@@ -24,6 +26,7 @@ public class AuthenticationController {
 	@Autowired
 	private CredentialsService credentialsService;
 	@Autowired UserService userService;
+	@Autowired ProfessorService professorService;
 	
 	
 	/*GET DELLA HOME PAGE*/
@@ -50,7 +53,7 @@ public class AuthenticationController {
 		return "logInPage.html";
 	}
 	
-	/*GET DELLA PAGINA PER REGISTRARE I DATI E POST PER INSERIRE I DATI NEL DB*/
+	/*GET DELLA PAGINA PER REGISTRARE I DATI E POST PER INSERIRE I DATI NEL DB DI UNO USER GENERICO*/
 	@GetMapping(value = "/register") 
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
@@ -71,9 +74,39 @@ public class AuthenticationController {
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
             model.addAttribute("user", user);
-            return "registrationUserSuccessful.html";
+            return "logInPage.html";
         }
         return "registerUser.html";
+    }
+	
+	/*GET DELLA PAGINA PER REGISTRARE I DATI E POST PER INSERIRE I DATI NEL DB DI UN PROFESSORE*/
+	@GetMapping(value = {"/registerProfessor"}) 
+	public String showRegisterFormProfessor (Model model) {
+		System.out.println("------------------------------------------------------ciao--------------------");
+		model.addAttribute("professor", new Professor());
+		
+		model.addAttribute("credentials", new Credentials() );
+		
+		return "registerProfessor.html";
+	}
+	
+	@PostMapping(value = { "/registerProfessor" })
+    public String registerProfessor(@Valid @ModelAttribute Professor professor,
+                 BindingResult userBindingResult, @Valid
+                 @ModelAttribute Credentials credentials,
+                 BindingResult credentialsBindingResult,
+                 Model model) {
+
+		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
+        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+            professorService.saveProfessor(professor);
+            credentials.setProfessor(professor);
+            credentialsService.saveCredentials(credentials);
+            model.addAttribute("professor", professor);
+//            return "homePage.html";
+            return "logInPage.html";
+        }
+        return "registerProfessor.html";
     }
 	
 	/*GET CHE MOSTRA LA HOME PAGE (O PAGINA DEDICATA A SECONDA DEL RUOLO) DOPO LOG IN*/

@@ -2,11 +2,19 @@
 package it.uniroma3.lezioniexpert.service;
 
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.lezioniexpert.model.Professor;
+import it.uniroma3.lezioniexpert.model.User;
 import it.uniroma3.lezioniexpert.repository.ProfessorRepository;
+import it.uniroma3.lezioniexpert.repository.UserRepository;
 
 
 @Service
@@ -21,14 +29,26 @@ public class ProfessorService {
 	public Iterable<Professor> findAll() {
 		return professorRepository.findAll();
 	}
-	
-//	public List<Student> findByYear(Integer i) {
-//		return studentRepository.findByYear(i);
-//	}
-//	
-//	public Student save(Student m) {
-//		return studentRepository.save(m);
-//	}
+
+    @Transactional
+    public Professor getProfessor(Long id) {
+        Optional<Professor> result = this.professorRepository.findById(id);
+        return result.orElse(null);
+    }
+
+    @Transactional
+    public Professor saveProfessor(Professor professor) {
+        return this.professorRepository.save(professor);
+    }
+
+    @Transactional
+    public List<Professor> getAllProfessors() {
+        List<Professor> result = new ArrayList<>();
+        Iterable<Professor> iterable = this.professorRepository.findAll();
+        for(Professor professor : iterable)
+            result.add(professor);
+        return result;
+    }
 
 }
 
