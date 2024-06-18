@@ -43,7 +43,8 @@
 /*}*/
 
 section {
-  padding: 0px 100px;
+  padding: 0px 40px;
+  max-width: 1200px;
 }
 
 img {
@@ -52,6 +53,9 @@ img {
 
 body {
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 header {
@@ -79,7 +83,7 @@ header {
 .navbar a {
   padding: 8px 17px;
   color: white;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -100,10 +104,11 @@ header {
 
 .header-icon .bx {
   color: white;
+  font-size: 1.5rem;
 }
 
 .header-icon .bx:hover {
-  color: brown;
+  color: #fe4e5c;
 }
 
 #menu-icon {
@@ -123,10 +128,17 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  display: grid;
+
+  /* display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
+  align-items: center; */
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
   align-items: center;
-  /*	gap:1.5rem;*/
+
+  gap: 1.5rem;
+  margin-top: 110px;
 }
 
 .home-text h1 {
@@ -154,4 +166,11 @@ header {
 
 .btn:hover {
   background: #bc343e;
+}
+
+@media only screen and (min-width: 800px) {
+  .home {
+    flex-direction: row;
+    margin: 0;
+  }
 }
