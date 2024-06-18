@@ -19,7 +19,6 @@ import static it.uniroma3.lezioniexpert.model.Credentials.ADMIN_ROLE;
 
 @Configuration
 @EnableWebSecurity
-//public  class WebSecurityConfig {
 	public class AuthConfiguration {
 
     @Autowired
@@ -77,4 +76,6 @@ import static it.uniroma3.lezioniexpert.model.Credentials.ADMIN_ROLE;
                 .clearAuthentication(true).permitAll();
         return httpSecurity.build();
     }
+    
+    
 }
