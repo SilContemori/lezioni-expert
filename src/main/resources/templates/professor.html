@@ -1,37 +1,53 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Student</title>
-		<link rel="stylesheet" href="/css/globalLezioniExpert.css" />
-		<link rel="stylesheet" href="/css/student.css" />
-	</head>
-	<body>
-		<header class="header">
-			<a 	href="/">
-				<div class="title"><img src="/images/titoloLezioni.png" width="30%" /></div>
-			</a>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
+  <head>
+    <title>Student</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/professor.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
 
-		</header>
-		
-		<h2>Dettagli Professor</h2>
-		<div class="container">
-			<div class="image"><img src="/images/uomo.png">
-		</div>
-		<div th:if="${professor}">
-			
-			<span th:text="'Nome: '+ ${professor.name}"></span>
-			<br>
-			<span th:text="'Cognome: '+ ${professor.surname}"></span>
-			<br>
-			<span th:text="'Età: '+${professor.age}"></span>
-			<br>
-			<span th:text="'Descrizione: '+${professor.description}"></span>
-		</div>
-<!--		<div th:unless="${artist}">Non esiste</div>-->
+  <body>
 
-	</body>
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <!--			<img src="/images/titoloLezioni.png" alt="">-->
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="#customers">Customers</a></li>
+          <div class="header-icon">
+            <i class="bx bxs-log-in"></i>
+          </div>
+        </ul>
+      </div>
+    </header>
+
+
+    <h2>Dettagli Professor</h2>
+    <!-- <div class="container">
+      <div class="image">
+        <img src="/images/uomo.png" />
+      </div>
+      <div th:if="${professor}">
+        <span th:text="'Nome: '+ ${professor.name}"></span>
+        <br />
+        <span th:text="'Cognome: '+ ${professor.surname}"></span>
+        <br />
+        <span th:text="'Età: '+${professor.age}"></span>
+        <br />
+        <span th:text="'Descrizione: '+${professor.description}"></span>
+      </div>
+    </div> -->
+    <!--		<div th:unless="${artist}">Non esiste</div>-->
+  </body>
 </html>

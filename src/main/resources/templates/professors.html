@@ -3,38 +3,56 @@
   <head>
     <title>Professors</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
-    <link rel="stylesheet" href="/css/students.css" />
+    <link rel="stylesheet" href="/css/professors.css" />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-    <header class="header">
-      <a href="/">
-        <div class="title">
-          <img src="/images/titoloLezioni.png" width="30%" />
-        </div>
-      </a>
-      <div th:if="${userDetails}">
-        <span th:text="${userDetails.username}"></span>
-        <a href="/logout">Logout</a>
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <!--			<img src="/images/titoloLezioni.png" alt="">-->
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="#customers">Customers</a></li>
+          <div class="header-icon">
+            <i class="bx bxs-log-in"></i>
+          </div>
+        </ul>
       </div>
     </header>
 
-    <h2>Professors</h2>
-    <div th:if="${professors==null || professors.isEmpty()}">
-      Non ci sono professori nel sistema
-    </div>
-    <ul>
-      <div class="container">
-        <li th:each="professor: ${professors}">
-          <div class="image">
-            <img src="/images/uomo.png" />
-            <a
-              th:href="@{'/professor' + '/' + ${professor.id}}"
-              th:text="${professor.name} + ' '+ ${professor.surname}"
-            ></a>
-          </div>
-        </li>
+    <section class="first-section">
+      <h2>Professors</h2>
+      <div th:if="${professors==null || professors.isEmpty()}">
+        Non ci sono professori nel sistema
       </div>
-    </ul>
+      <ul class="persons-container">
+        <li th:each="professor: ${professors}">
+          <a th:href="@{'/professor' + '/' + ${professor.id}}">
+            <div class="professor-widget">
+              <div class="professor-widget-image-container">
+                <img src="/images/uomo.png" />
+              </div>
+              <div class="professor-widget-info">
+                <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>
+                <p th:text="'età: '+${professor.age.toString()}"></p>
+                <p th:text="'email: '+${professor.email}"></p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
   </body>
 </html>

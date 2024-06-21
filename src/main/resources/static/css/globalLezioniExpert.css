@@ -1,33 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
-/*.header  {*/
-/*	background-color: rgb(255, 254, 200);;*/
-/*    display: flex;*/
-/*    flex-direction: row;*/
-/*    align-items: center;*/
-/*    justify-content: space-between;*/
-/*	padding: 1rem 4rem;*/
-/*}*/
-
-/** {*/
-/*    font-family: "Roboto", sans-serif;*/
-/*    margin: 0px;*/
-/*    padding: 0px;*/
-/*    box-sizing: border-box;*/
-/*    color: #282828;*/
-/*}*/
-
-/*body{*/
-/*	background-color: rgb(255, 254, 200);;*/
-/*}*/
-
-/*ul{*/
-/*	list-style: none;*/
-/*}*/
-
-/*.title{*/
-/*	width: 30%;*/
-/*}*/
+:root {
+  --red: #fe4e5c;
+  --grey-blue: #385a64;
+  --defalut-text-color: black;
+}
 
 * {
   font-family: "Poppins", sans-serif;
@@ -39,16 +16,99 @@
   list-style: none;
   text-decoration: none;
   font-size: 13px;
+  color: var(--defalut-text-color);
 }
-
-/* @media only screen and (min-width: 600px) {
-  * {
-    font-size: 14px;
-  }
-} */
 
 @media only screen and (min-width: 800px) {
   * {
     font-size: 16px;
+  }
+}
+
+section {
+  padding: 0px 40px;
+  max-width: 1200px;
+}
+
+img {
+  width: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1rem 1rem;
+  background-color: var(--grey-blue);
+}
+
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar {
+  display: none;
+}
+
+.navbar a {
+  padding: 8px 17px;
+  color: white;
+  /* font-size: 1rem; */
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.navbar a:hover {
+  background-color: var(--red);
+  border-radius: 0.2rem;
+  transition: 0.2s all linear;
+}
+
+.header-icon {
+  font-size: 22px;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  column-gap: 0.8rem;
+}
+
+.header-icon .bx {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.header-icon .bx:hover {
+  color: var(--red);
+}
+
+#menu-icon {
+  color: white;
+  font-size: 24px;
+  z-index: 100001;
+  cursor: pointer;
+  /* display: none; */
+}
+
+@media only screen and (min-width: 800px) {
+  #menu-icon {
+    display: none;
+  }
+  .navbar {
+    display: flex;
   }
 }
