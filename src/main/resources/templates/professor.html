@@ -11,7 +11,6 @@
   </head>
 
   <body>
-
     <header>
       <div class="header-container">
         <a href="#" class="logo">
@@ -32,13 +31,26 @@
       </div>
     </header>
 
+    <section class="first-section" th:if="${professor}">
+      <h2>Dettagli Professor</h2>
+      <div class="professor-container">
+        <div class="image-container">
+          <img src="/images/uomo.png" />
+        </div>
 
-    <h2>Dettagli Professor</h2>
+        <div class="info-container">
+          <p th:text="'Nome: '+ ${professor.name}"></p>
+          <p th:text="'Cognome: '+ ${professor.surname}"></p>
+          <p th:text="'Età: '+ ${professor.age}"></p>
+          <p th:text="'Descrizione: '+ ${professor.description}"></p>
+        </div>
+      </div>
+    </section>
     <!-- <div class="container">
       <div class="image">
         <img src="/images/uomo.png" />
       </div>
-      <div th:if="${professor}">
+      <div th:if="${professor}">j
         <span th:text="'Nome: '+ ${professor.name}"></span>
         <br />
         <span th:text="'Cognome: '+ ${professor.surname}"></span>
