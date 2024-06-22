@@ -63,10 +63,11 @@ header {
 
 .navbar {
   display: none;
+  align-items: center;
 }
 
 .navbar a {
-  padding: 8px 17px;
+  padding: 0.2rem .3rem ;
   color: white;
   /* font-size: 1rem; */
   text-transform: uppercase;
@@ -79,22 +80,16 @@ header {
   transition: 0.2s all linear;
 }
 
-.header-icon {
-  font-size: 22px;
-  cursor: pointer;
-  z-index: 10000;
-  display: flex;
-  column-gap: 0.8rem;
-}
-
-.header-icon .bx {
+.header-icon  {
   color: white;
   font-size: 1.5rem;
 }
 
-.header-icon .bx:hover {
-  color: var(--red);
-}
+/*.header-icon .bx:hover {*/
+/*  color: var(--red);*/
+/*}*/
+
+
 
 #menu-icon {
   color: white;

@@ -9,18 +9,37 @@
 	
 </head>
 <body>
-	 <header class="header">
-		<a 	href="/">
-			<div><img src="/images/titoloLezioni.png" width="30%" /></div>
-		</a>
-		<div th:if="${userDetails}">
-			<span th:text="${userDetails.username}"></span>
-			<a href="/logout">Logout</a>
-		</div>
-		<div th:unless="${user}">
-			<a href="/login">Login</a>
-		</div>
-	</header> 
+<!--	 <header class="header">-->
+<!--		<a 	href="/">-->
+<!--			<div><img src="/images/titoloLezioni.png" width="30%" /></div>-->
+<!--		</a>-->
+<!--		<div th:if="${userDetails}">-->
+<!--			<span th:text="${userDetails.username}"></span>-->
+<!--			<a href="/logout">Logout</a>-->
+<!--		</div>-->
+<!--		<div th:unless="${user}">-->
+<!--			<a href="/login">Login</a>-->
+<!--		</div>-->
+<!--	</header> -->
+	<header>
+	     <div class="header-container">
+	       <a href="#" class="logo">
+	         <!--			<img src="/images/titoloLezioni.png" alt="">-->
+	         <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+	       </a>
+	       <i class="bx bx-menu" id="menu-icon"></i>
+	
+	       <ul class="navbar">
+	         <li><a href="/">Home</a></li>
+	         <li><a href="#about">Chi Siamo</a></li>
+	         <li><a href="/professors">Professori</a></li>
+	         <li><a href="#customers">Customers</a></li>
+	         <div class="header-icon">
+	           <i class="bx bxs-log-in"></i>
+	         </div>
+	       </ul>
+	     </div>
+	   </header>
 	<h1>Registrazione nuovo professore</h1>
 	<form th:action="@{/registerProfessor}" method="POST">
 		<div>
