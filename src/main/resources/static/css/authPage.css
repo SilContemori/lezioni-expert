@@ -49,7 +49,7 @@
 }
 
 .btn-div {
-  margin: 0.5rem;
+  /* margin: 0.5rem; */
   display: flex;
   flex-direction: column;
   align-items: stretch;
