@@ -11,7 +11,7 @@
   </head>
 
   <body>
-	<header>
+    <header>
       <div class="header-container">
         <a href="#" class="logo">
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
@@ -22,22 +22,25 @@
           <li><a href="/">Home</a></li>
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
-		  <li><a href="/announcements">Annunci</a></li>
-			<a th:if="${userDetails}" href="/logout">		  
-				<i class='bx bxs-log-out header-icon' ></i>				
-			</a>
-			<a th:unless="${userDetails}" href="/login">		  
-            	<i class="bx bxs-log-in header-icon"></i>				
-			</a>
+          <li><a href="/announcements">Annunci</a></li>
+          <a th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
         </ul>
       </div>
     </header>
 
-    <section class="first-section" th:if="${professor}">
-      <h2>Dettagli Professor</h2>
+    <section class="dettagli-section" th:if="${professor}">
+      <h2 class="dettagli-section-title">Dettagli Professore</h2>
       <div class="professor-container">
         <div class="image-container">
-          <img src="/images/uomo.png" />
+          <img class="professor-image"
+            th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+            alt="immagine del professore"
+          />
         </div>
 
         <div class="info-container">

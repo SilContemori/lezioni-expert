@@ -23,7 +23,7 @@ img {
 	width: 100%;
 } */
 
-.first-section {
+.dettagli-section {
   margin-top: 100px;
   width: 100%;
   max-width: 900px;
@@ -32,18 +32,35 @@ img {
   /* align-items: center; */
 }
 
+.dettagli-section-title {
+  font-size: 2rem;
+  /* color: var(--red); */
+  margin-bottom: 1rem;
+}
+
 .professor-container {
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: stretch;
 
   gap: 1rem;
 }
 
 .image-container {
-  max-height: 500px;
   overflow: hidden;
+  max-width: 400px;
+  border-radius: 30px;
+  /* border: var(--grey-blue) solid 3px; */
+}
+.professor-image {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.info-container {
+  border: var(--grey-blue) solid 3px;
+  width: 100%;
 }
 
 @media only screen and (min-width: 800px) {

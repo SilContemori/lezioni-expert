@@ -4,11 +4,14 @@
     <title>Professors</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
     <link rel="stylesheet" href="/css/professors.css" />
-    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
 
   <body>
-	<header>
+    <header>
       <div class="header-container">
         <a href="#" class="logo">
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
@@ -19,13 +22,13 @@
           <li><a href="/">Home</a></li>
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
-		  <li><a href="/announcements">Annunci</a></li>
-			<a th:if="${userDetails}" href="/logout">		  
-				<i class='bx bxs-log-out header-icon' ></i>				
-			</a>
-			<a th:unless="${userDetails}" href="/login">		  
-            	<i class="bx bxs-log-in header-icon"></i>				
-			</a>
+          <li><a href="/announcements">Annunci</a></li>
+          <a th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
         </ul>
       </div>
     </header>
@@ -40,7 +43,11 @@
           <a th:href="@{'/professor' + '/' + ${professor.id}}">
             <div class="professor-widget">
               <div class="professor-widget-image-container">
-                <img src="/images/uomo.png" />
+                <!-- <img src="/images/uomo.png" /> -->
+                <img
+                  th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+                  alt="immagine del professore"
+                />
               </div>
               <div class="professor-widget-info">
                 <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>
