@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sing up</title>
-	<link rel="stylesheet" href="/css/globalLezioniExpert.css" />
-    <link rel="stylesheet" href="/css/authPage.css">
-	
-</head>
-<body>
-	<header>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/authPage.css" />
+  </head>
+  <body>
+    <header>
       <div class="header-container">
         <a href="#" class="logo">
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
@@ -20,17 +19,113 @@
           <li><a href="/">Home</a></li>
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
-		  <li><a href="/announcements">Annunci</a></li>
-			<a th:if="${userDetails}" href="/logout">		  
-				<i class='bx bxs-log-out header-icon' ></i>				
-			</a>
-			<a th:unless="${userDetails}" href="/login">		  
-            	<i class="bx bxs-log-in header-icon"></i>				
-			</a>
+          <li><a href="/announcements">Annunci</a></li>
+          <a th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
         </ul>
       </div>
     </header>
-	<h1>Registrazione nuovo utente</h1>
+
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">Register</h1>
+        <form
+          th:action="@{/register}"
+          method="POST"
+          enctype="multipart/form-data"
+        >
+          <div class="input-div">
+            <input
+              class="input input-username"
+              type="text"
+              placeholder="name"
+              required
+              th:field="${user.name}"
+            />
+            <span
+              th:if="${#fields.hasErrors('user.name')}"
+              th:errors="${user.name}"
+              th:style="'color:red'"
+            >
+            </span>
+          </div>
+          <div class="input-div">
+            <input
+              class="input input-username"
+              type="text"
+              placeholder="surname"
+              required
+              th:field="${user.surname}"
+            />
+            <span
+              th:if="${#fields.hasErrors('user.surname')}"
+              th:errors="${user.surname}"
+              th:style="'color:red'"
+            >
+            </span>
+          </div>
+          <div class="input-div">
+            <input
+              class="input"
+              type="text"
+              placeholder="email"
+              required
+              th:field="${user.email}"
+            />
+            <span
+              th:if="${#fields.hasErrors('user.email')}"
+              th:errors="${user.email}"
+              th:style="'color:red'"
+            >
+            </span>
+          </div>
+          <div class="input-div">
+            <input
+              class="input"
+              type="text"
+              placeholder="username"
+              required
+              th:field="${credentials.username}"
+            />
+          </div>
+          <span
+            th:if="${#fields.hasErrors('credentials.username')}"
+            th:errors="${credentials.username}"
+            th:style="'color:red'"
+          >
+          </span>
+
+          <div class="input-div">
+            <input
+              class="input"
+              type="text"
+              placeholder="password"
+              required
+              th:field="${credentials.password}"
+            />
+          </div>
+          <span
+            th:if="${#fields.hasErrors('credentials.password')}"
+            th:errors="${credentials.password}"
+            th:style="'color:red'"
+          >
+          </span>
+
+          <div class="btn-div">
+            <button class="btn-form btn-login" type="submit">Registra</button>
+            <a class="btn-form btn-register" th:href="@{/register}">Log in</a>
+            <!-- <a class="btn-form btn-register" th:href="@{/registerProfessor}"
+              >Sing up professor</a -->
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- <h1>Registrazione nuovo utente</h1>
 	<form th:action="@{/register}" method="POST">
 		<div>
 			<label>Nome</label>
@@ -70,7 +165,6 @@
 		<div>
 			<button type="submit">Registra</button>
 		</div>
-	</form>
-</body>
-
+	</form> -->
+  </body>
 </html>
