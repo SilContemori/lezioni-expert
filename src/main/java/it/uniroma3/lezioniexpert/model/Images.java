@@ -12,9 +12,11 @@ import jakarta.persistence.Lob;
 
 @Entity
 public class Images {
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
+
 	@Lob
 	@Column
 	private byte[] imageData;	

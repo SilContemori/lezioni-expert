@@ -29,5 +29,8 @@ public class ProfessorController {
 		model.addAttribute("professor", this.professorRepository.findById(id).get());
 		return "professor.html";
 	}	
+	
+
+	
 }
 

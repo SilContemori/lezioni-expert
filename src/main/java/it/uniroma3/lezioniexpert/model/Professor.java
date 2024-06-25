@@ -21,7 +21,7 @@ public class Professor {
 	private Integer age;
 	
 	@OneToOne
-	private Images cover;
+	private Images profileImage;
 
 	@ManyToMany
 	private List<Subject> teachings;
@@ -99,11 +99,11 @@ public class Professor {
 	
 	
 	
-	public Images getCover() {
-		return cover;
+	public Images getProfileImage() {
+		return profileImage;
 	}
-	public void setCover(Images cover) {
-		this.cover = cover;
+	public void setProfileImage(Images image) {
+		this.profileImage = image;
 	}
 	public Long getId() {
 		return id;

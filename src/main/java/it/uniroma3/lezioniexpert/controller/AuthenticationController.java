@@ -104,11 +104,10 @@ public class AuthenticationController {
 		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
         	try {
-				Images i=new Images();
-				i.setImageData(file.getBytes());
-				professor.setCover(i);
-				this.imageRepository.save(i);
-				
+				Images image=new Images();
+				image.setImageData(file.getBytes());
+				professor.setProfileImage(image);
+				this.imageRepository.save(image);
 			} catch (Exception e) {
 				System.out.println("erroreeee");
 			}
