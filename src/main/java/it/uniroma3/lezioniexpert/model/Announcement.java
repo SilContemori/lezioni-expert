@@ -1,5 +1,6 @@
 package it.uniroma3.lezioniexpert.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -15,9 +16,10 @@ public class Announcement {
 	// private Student student;
 	@ManyToOne
 	private Professor professor;
-	private Integer HourlyRate;//budget se per studente
-	@ManyToMany
-	private List<Subject> subjects;
+	private Integer hourlyRate;//budget se per studente
+	@ManyToOne
+	private Subject subjects;
+	
 	public Long getId() {
 		return id;
 	}
@@ -37,15 +39,16 @@ public class Announcement {
 		this.professor = professor;
 	}
 	public Integer getHourlyRate() {
-		return HourlyRate;
+		return hourlyRate;
 	}
 	public void setHourlyRate(Integer hourlyRate) {
-		HourlyRate = hourlyRate;
+		this.hourlyRate = hourlyRate;
 	}
-	public List<Subject> getSubjects() {
+	
+	public Subject getSubjects() {
 		return subjects;
 	}
-	public void setSubjects(List<Subject> subjects) {
+	public void setSubjects(Subject subjects) {
 		this.subjects = subjects;
 	}
 	@Override
@@ -55,7 +58,7 @@ public class Announcement {
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((location == null) ? 0 : location.hashCode());
 		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
-		result = prime * result + ((HourlyRate == null) ? 0 : HourlyRate.hashCode());
+		result = prime * result + ((hourlyRate == null) ? 0 : hourlyRate.hashCode());
 		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
 		return result;
 	}
@@ -83,10 +86,10 @@ public class Announcement {
 				return false;
 		} else if (!professor.equals(other.professor))
 			return false;
-		if (HourlyRate == null) {
-			if (other.HourlyRate != null)
+		if (hourlyRate == null) {
+			if (other.hourlyRate != null)
 				return false;
-		} else if (!HourlyRate.equals(other.HourlyRate))
+		} else if (!hourlyRate.equals(other.hourlyRate))
 			return false;
 		if (subjects == null) {
 			if (other.subjects != null)

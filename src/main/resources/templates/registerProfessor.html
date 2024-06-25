@@ -19,7 +19,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
-          <li><a href="#customers">Customers</a></li>
+		  <li><a href="/announcements">Annunci</a></li>
           <a th:if="${userDetails}" href="/logout">
             <i class="bx bxs-log-out header-icon"></i>
           </a>
@@ -32,7 +32,7 @@
 
     <div class="container">
       <div class="form-container">
-        <h1 class="title">Login</h1>
+        <h1 class="title">Register Professor</h1>
         <form
           th:action="@{/registerProfessor}"
           method="POST"
@@ -48,7 +48,6 @@
             />
           </div>
           <div class="input-div">
-            <!-- <label for="username">Password:</label> -->
             <input
               type="text"
               placeholder="surname"

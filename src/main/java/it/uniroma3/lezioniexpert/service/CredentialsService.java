@@ -33,8 +33,8 @@ public class CredentialsService {
 
     @Transactional
     public Credentials saveCredentials(Credentials credentials) {
-    	if(credentials.getRole().equals(Credentials.PROFESSOR)) {
-    		credentials.setRole(Credentials.PROFESSOR);
+    	if(credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
+    		credentials.setRole(Credentials.PROFESSOR_ROLE);
     	}else {
     		credentials.setRole(Credentials.DEFAULT_ROLE);
     	}
