@@ -12,10 +12,9 @@
     />
   </head>
   <body>
-    <header>
+	<header>
       <div class="header-container">
         <a href="#" class="logo">
-          <!--			<img src="/images/titoloLezioni.png" alt="">-->
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
         </a>
         <i class="bx bx-menu" id="menu-icon"></i>
@@ -25,10 +24,11 @@
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
           <li><a href="#customers">Customers</a></li>
-			<a  href="/login">		  
-
-            	<i class="bx bxs-log-in 			header-icon"></i>				
-
+			<a th:if="${userDetails}" href="/logout">		  
+				<i class='bx bxs-log-out header-icon' ></i>				
+			</a>
+			<a th:unless="${userDetails}" href="/login">		  
+            	<i class="bx bxs-log-in header-icon"></i>				
 			</a>
         </ul>
       </div>
@@ -46,7 +46,7 @@
           migliora i tuoi risultati scolastici con l'aiuto di esperti
           qualificati.
         </p>
-        <a href="#" class="btn">Contatta ora</a>
+        <a href="/login" class="btn">Scopri di più</a>
       </div>
       <div class="home-img">
         <img
@@ -79,62 +79,45 @@
         <a href="#" class="btn">Scopri di più</a>
       </div>
     </section>
-    <section class="product" id="product">
-      <div class="heading">
-        <h2>Come Funziona Lezioni Expert</h2>
-      </div>
-      <div class="step-container">
-        <div class="box">
-          <img
-            style="width: 100%; max-width: 600px"
-            src="/images/prova.jpg"
-            alt=""
-          />
-          <h3>Trova il tuo insegnante</h3>
-          <div class="content">
-            <a href="#">Find</a>
-          </div>
-        </div>
-        <div class="box">
-          <img
-            style="width: 100%; max-width: 600px"
-            src="/images/prova.jpg"
-            alt=""
-          />
-          <h3>Inizia a imparare</h3>
-          <div class="content">
-            <a href="#">Find</a>
-          </div>
-        </div>
-        <div class="box">
-          <img
-            style="width: 100%; max-width: 600px"
-            src="/images/prova.jpg"
-            alt=""
-          />
-          <h3>Parla.Leggi.Scrivi.Ripeti</h3>
-          <div class="content">
-            <a href="#">Find</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!--    <header class="header">-->
-    <!--      <div><img src="/images/titoloLezioni.png" width="30%" /></div>-->
-
-    <!--      <div class="div">-->
-    <!--        <a href="/login" class="sing-in-btn">-->
-    <!--          <span> Sing </span>-->
-
-    <!--          <span> In </span>-->
-    <!--        </a>-->
-    <!--        <a class="sing-up-btn" href="/register">-->
-    <!--          <span> Sing </span>-->
-    <!--          <span> Up </span>-->
-    <!--        </a>-->
-    <!--      </div>-->
-    <!--    </header>-->
-    <!--    <a href="/professors">professors</a>-->
+<!--    <section class="product" id="product">-->
+<!--      <div class="heading">-->
+<!--        <h2>Come Funziona Lezioni Expert</h2>-->
+<!--      </div>-->
+<!--      <div class="step-container">-->
+<!--        <div class="box">-->
+<!--          <img-->
+<!--            style="width: 100%; max-width: 600px"-->
+<!--            src="/images/prova.jpg"-->
+<!--            alt=""-->
+<!--          />-->
+<!--          <h3>Trova il tuo insegnante</h3>-->
+<!--          <div class="content">-->
+<!--            <a href="#">Find</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="box">-->
+<!--          <img-->
+<!--            style="width: 100%; max-width: 600px"-->
+<!--            src="/images/prova.jpg"-->
+<!--            alt=""-->
+<!--          />-->
+<!--          <h3>Inizia a imparare</h3>-->
+<!--          <div class="content">-->
+<!--            <a href="#">Find</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="box">-->
+<!--          <img-->
+<!--            style="width: 100%; max-width: 600px"-->
+<!--            src="/images/prova.jpg"-->
+<!--            alt=""-->
+<!--          />-->
+<!--          <h3>Parla.Leggi.Scrivi.Ripeti</h3>-->
+<!--          <div class="content">-->
+<!--            <a href="#">Find</a>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </section>-->
   </body>
 </html>

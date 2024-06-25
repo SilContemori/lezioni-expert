@@ -11,13 +11,18 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.lezioniexpert.model.Credentials;
+import it.uniroma3.lezioniexpert.model.Images;
 import it.uniroma3.lezioniexpert.model.Professor;
 import it.uniroma3.lezioniexpert.model.User;
+import it.uniroma3.lezioniexpert.repository.ImagesRepository;
 import it.uniroma3.lezioniexpert.service.CredentialsService;
 import it.uniroma3.lezioniexpert.service.ProfessorService;
 import it.uniroma3.lezioniexpert.service.UserService;
+
 import jakarta.validation.Valid;
 
 
@@ -27,6 +32,7 @@ public class AuthenticationController {
 	private CredentialsService credentialsService;
 	@Autowired UserService userService;
 	@Autowired ProfessorService professorService;
+	@Autowired private ImagesRepository imageRepository;
 	
 	
 	/*GET DELLA HOME PAGE*/
@@ -84,14 +90,12 @@ public class AuthenticationController {
 	public String showRegisterFormProfessor (Model model) {
 		System.out.println("------------------------------------------------------ciao--------------------");
 		model.addAttribute("professor", new Professor());
-		
 		model.addAttribute("credentials", new Credentials() );
-		
 		return "registerProfessor.html";
 	}
 	
-	@PostMapping(value = { "/registerProfessor" })
-    public String registerProfessor(@Valid @ModelAttribute Professor professor,
+	@PostMapping(value = { "/registerProfessor" },consumes = "multipart/form-data")
+    public String registerProfessor(@Valid @ModelAttribute Professor professor,@RequestPart("file") MultipartFile file,
                  BindingResult userBindingResult, @Valid
                  @ModelAttribute Credentials credentials,
                  BindingResult credentialsBindingResult,
@@ -99,6 +103,15 @@ public class AuthenticationController {
 
 		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
+        	try {
+				Images i=new Images();
+				i.setImageData(file.getBytes());
+				professor.setCover(i);
+				this.imageRepository.save(i);
+				
+			} catch (Exception e) {
+				System.out.println("erroreeee");
+			}
             professorService.saveProfessor(professor);
             credentials.setProfessor(professor);
             credentialsService.saveCredentials(credentials);
@@ -115,10 +128,12 @@ public class AuthenticationController {
         
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-//            return "admin/indexAdmin.html";
-    		return "homePage.html";
-        }
+    	if(credentials.getRole()!=null) {
+	    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+	//            return "admin/indexAdmin.html";
+	    		return "homePage.html";
+	        }
+    	}
         return "homePage.html";
     }
 	

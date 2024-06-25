@@ -10,22 +10,26 @@
 </head>
 <body>
 	<header>
-	     <div class="header-container">
-	       <a href="#" class="logo">
-	         <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
-	       </a>
-	       <i class="bx bx-menu" id="menu-icon"></i>
-	       <ul class="navbar">
-	         <li><a href="/">Home</a></li>
-	         <li><a href="#about">Chi Siamo</a></li>
-	         <li><a href="/professors">Professori</a></li>
-	         <li><a href="#customers">Customers</a></li>
-	         <div class="header-icon">
-	           <i class="bx bxs-log-in "></i>
-	         </div>
-	       </ul>
-	     </div>s
-   </header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="#customers">Customers</a></li>
+			<a th:if="${userDetails}" href="/logout">		  
+				<i class='bx bxs-log-out header-icon' ></i>				
+			</a>
+			<a th:unless="${userDetails}" href="/login">		  
+            	<i class="bx bxs-log-in header-icon"></i>				
+			</a>
+        </ul>
+      </div>
+    </header>
 	<h1>Registrazione nuovo utente</h1>
 	<form th:action="@{/register}" method="POST">
 		<div>

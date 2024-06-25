@@ -6,34 +6,31 @@
     <title>Sign in</title>
 	<link rel="stylesheet" href="/css/globalLezioniExpert.css"/>
     <link rel="stylesheet" href="/css/authPage.css">
+	<link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
 </head>
 
 <body>
-<!--	<header class="header">-->
-<!--		<a 	href="/">-->
-<!--			<div><img src="/images/titoloLezioni.png" width="30%" /></div>-->
-<!--		</a>-->
-<!--	</header>-->
 	<header>
-	     <div class="header-container">
-	       <a href="#" class="logo">
-	         <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
-	       </a>
-	       <i class="bx bx-menu" id="menu-icon"></i>
-	
-	       <ul class="navbar">
-	         <li><a href="/">Home</a></li>
-	         <li><a href="#about">Chi Siamo</a></li>
-	         <li><a href="/professors">Professori</a></li>
-	         <li><a href="#customers">Customers</a></li>
-	         <div class="header-icon">
-				<a href="/login">
-	          		<i class="bx bxs-log-in"></i>
-				</a>
-	         </div>
-	       </ul>
-	     </div>
-	   </header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="#customers">Customers</a></li>
+			<a th:if="${userDetails}" href="/logout">		  
+				<i class='bx bxs-log-out header-icon' ></i>				
+			</a>
+			<a th:unless="${userDetails}" href="/login">		  
+            	<i class="bx bxs-log-in header-icon"></i>				
+			</a>
+        </ul>
+      </div>
+    </header>
 	
 	<div class="container">
 		

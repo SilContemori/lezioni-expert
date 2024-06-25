@@ -11,22 +11,24 @@
   </head>
 
   <body>
-    <header>
+	<header>
       <div class="header-container">
         <a href="#" class="logo">
-          <!--			<img src="/images/titoloLezioni.png" alt="">-->
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
         </a>
         <i class="bx bx-menu" id="menu-icon"></i>
 
         <ul class="navbar">
-          <li><a href="#home">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li><a href="#about">Chi Siamo</a></li>
           <li><a href="/professors">Professori</a></li>
           <li><a href="#customers">Customers</a></li>
-          <div class="header-icon">
-            <i class="bx bxs-log-in"></i>
-          </div>
+			<a th:if="${userDetails}" href="/logout">		  
+				<i class='bx bxs-log-out header-icon' ></i>				
+			</a>
+			<a th:unless="${userDetails}" href="/login">		  
+            	<i class="bx bxs-log-in header-icon"></i>				
+			</a>
         </ul>
       </div>
     </header>

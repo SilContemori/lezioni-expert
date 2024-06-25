@@ -17,9 +17,11 @@ public class Professor {
 	private String surname;
 	@NotBlank
 	private String email;
-	
 	private String description;
 	private Integer age;
+	
+	@OneToOne
+	private Images cover;
 
 	@ManyToMany
 	private List<Subject> teachings;
@@ -93,6 +95,15 @@ public class Professor {
 		} else if (!announcements.equals(other.announcements))
 			return false;
 		return true;
+	}
+	
+	
+	
+	public Images getCover() {
+		return cover;
+	}
+	public void setCover(Images cover) {
+		this.cover = cover;
 	}
 	public Long getId() {
 		return id;
