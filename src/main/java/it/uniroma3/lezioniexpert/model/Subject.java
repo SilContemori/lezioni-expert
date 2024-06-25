@@ -9,9 +9,12 @@ public class Subject {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 	@NotNull
-	private String livello;
+	private String level;
 	@NotNull
-	private String nome;
+	private String name;
+	@OneToMany(mappedBy="subjects")
+	private List<Announcement> announcemenys;
+	
 	@ManyToMany(mappedBy="teachings")
 	private List<Professor> professor;
 	@ManyToMany(mappedBy="subjects")
@@ -24,8 +27,8 @@ public class Subject {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((livello == null) ? 0 : livello.hashCode());
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((level == null) ? 0 : level.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
 		result = prime * result + ((announcements == null) ? 0 : announcements.hashCode());
 		return result;
@@ -44,15 +47,15 @@ public class Subject {
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
-		if (livello == null) {
-			if (other.livello != null)
+		if (level == null) {
+			if (other.level != null)
 				return false;
-		} else if (!livello.equals(other.livello))
+		} else if (!level.equals(other.level))
 			return false;
-		if (nome == null) {
-			if (other.nome != null)
+		if (name == null) {
+			if (other.name != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!name.equals(other.name))
 			return false;
 		if (professor == null) {
 			if (other.professor != null)
@@ -72,17 +75,17 @@ public class Subject {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public String getLivello() {
-		return livello;
+	public String getLevel() {
+		return level;
 	}
-	public void setLivello(String livello) {
-		this.livello = livello;
+	public void setLevel(String livello) {
+		this.level = livello;
 	}
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String nome) {
+		this.name = nome;
 	}
 	public List<Professor> getProfessor() {
 		return professor;

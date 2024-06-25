@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Announcement</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/authPage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <ul class="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="/announcements">Annunci</a></li>
+          <a th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">Add Announcement</h1>
+		<form class="form" th:action="@{/announcement}" method="POST" th:object="${announcement}">
+          <div class="input-div">
+			<input type="text" class="input input-username"  th:field="${announcement.location}"placeholder="Location...">
+          </div>
+		  <div class="input-div">
+		 	 <input type="number" class="input input-username" th:field="${announcement.hourlyRate}"placeholder="Hourly Rate...">
+		  </div>
+		  <div class="input-div">
+  		 	 <input type="text" class="input input-username" th:field="${subject.name}"placeholder="Subject's Name...">
+  		  </div>
+		  <div class="input-div">
+		 	 <input type="text" class="input input-username" th:field="${subject.level}"placeholder="Subject's Level...">
+		  </div>
+		  <button class="btn-form btn-login" type="submit">Conferma</button>
+			 <!--		  <div class="input-div">-->
+<!--              <input-->
+<!--                placeholder="Hourly Rate..."-->
+<!--                class="input input-username"-->
+<!--                name="username"-->
+<!--                type="number"-->
+<!--                required-->
+<!--              />-->
+<!--            </div>-->
+          
+<!--          <div>-->
+<!--            <span th:if="${param.error != null}"-->
+<!--              >Username o password errati</span-->
+<!--            >-->
+<!--          </div>-->
+<!--          <div class="btn-div">-->
+<!--            <button class="btn-form btn-login" type="submit">Login</button>-->
+<!--            <a class="btn-form btn-register" th:href="@{/register}">Sing up</a>-->
+<!--            <a class="btn-form btn-register" th:href="@{/registerProfessor}"-->
+<!--              >Sing up professor</a-->
+<!--            >-->
+<!--          </div>-->
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

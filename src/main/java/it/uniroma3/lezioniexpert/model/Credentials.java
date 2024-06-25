@@ -12,7 +12,7 @@ public class Credentials {
 
 	public static final String DEFAULT_ROLE = "DEFAULT";
 	public static final String ADMIN_ROLE = "ADMIN";
-	public static final String PROFESSOR = "PROFESSOR";
+	public static final String PROFESSOR_ROLE = "PROFESSOR";
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,7 +33,7 @@ public class Credentials {
 
 	public void setProfessor(Professor professor) {
 		this.professor = professor;
-		this.setRole(PROFESSOR);
+		this.setRole(PROFESSOR_ROLE);
 	}
 
 	public String getUsername() {
@@ -53,6 +53,7 @@ public class Credentials {
 	}
 
 	public void setUser(User user) {
+		this.setRole(DEFAULT_ROLE);
 		this.user = user;
 	}
 	
