@@ -97,6 +97,28 @@ header {
   /* display: none; */
 }
 
+.profile-image {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.profile-image-user {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid white;
+}
+
+.profile-image img {
+  width: 100%;
+  height: auto;
+}
+
 @media only screen and (min-width: 800px) {
   #menu-icon {
     display: none;
