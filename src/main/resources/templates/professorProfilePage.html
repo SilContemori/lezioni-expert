@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lezioni Expert</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/professorProfilePage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="#" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a href="/">Home</a></li>
+          <li><a href="#about">Chi Siamo</a></li>
+          <li><a href="/professors">Professori</a></li>
+          <li><a href="/announcements">Annunci</a></li>
+          <a th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+
+          <li th:if="${professor}" class="profile-image">
+            <img
+              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+              alt="immagine del professore"
+            />
+          </li>
+          <div th:if="${userDetails}">
+            <li th:unless="${professor}" class="profile-image-user">
+              <img
+                src="/images/userProfile.png"
+                alt="immagine del professore"
+              />
+            </li>
+          </div>
+        </ul>
+      </div>
+    </header>
+
+    <section class="dettagli-section" th:if="${professor}">
+      <h2 class="dettagli-section-title">Il tuo Profilo</h2>
+
+      <div class="professor-container">
+        <div class="image-container">
+          <img
+            class="professor-image"
+            th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+            alt="immagine del professore"
+          />
+        </div>
+
+        <div class="info-container">
+          <p th:text="'Nome: '+ ${professor.name}"></p>
+          <p th:text="'Cognome: '+ ${professor.surname}"></p>
+          <p th:text="'Età: '+ ${professor.age}"></p>
+          <p th:text="'Descrizione: '+ ${professor.description}"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="announcements-section">
+      <h3 class="announcements-section-title">I tuoi Annunci:</h3>
+      <div></div>
+    </section>
+  </body>
+</html>
