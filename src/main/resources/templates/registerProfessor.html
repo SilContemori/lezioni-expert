@@ -120,6 +120,32 @@
             th:style="'color:red'"
           >
           </span>
+         <div class="input-div">
+            <input
+              class="input"
+              type="number"
+              placeholder="age"
+              required
+              th:field="${professor.age}"
+            />
+            <span
+              th:if="${#fields.hasErrors('professor.age')}"
+              th:errors="${professor.age}"
+              th:style="'color:red'"
+            >
+            </span>
+          </div>
+
+          <div class="input-div">
+				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+            <span
+              th:if="${#fields.hasErrors('professor.age')}"
+              th:errors="${professor.age}"
+              th:style="'color:red'"
+            >
+            </span>
+          </div>
+
           <input
             name="file"
             type="file"
