@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Announcements</title>
+    <title>Announcements Of Subject</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
     <link rel="stylesheet" href="/css/professors.css" />
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"rel="stylesheet"/>
@@ -51,20 +51,19 @@
     </header>
 
 	<section class="first-section">
-	      <h2>Annunci Per Materia</h2>
-	      <div th:if="${subjects==null || subjects.isEmpty()}">
+		  <h2 th:text="'Annunci di: '+${subjectName}"></h2>
+	      <div th:if="${announcements==null || announcements.isEmpty()}">
 	        Non ci sono annunci nel sistema
 	      </div>
 	      <ul class="persons-container">
-	        <li th:each="subject: ${subjects}">
-<!--	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">-->
+	        <li th:each="announcement: ${announcements}">
+	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
 	            <div class="professor-widget">
 	              <div class="professor-widget-info">
-					<h2 style="text-align: center;" th:text="${subject}"></h2>
-<!--	                <p th:text="'Location: '+${announcement.location}"></p>-->
-<!--					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>-->
-<!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
-<!--	                <p th:text="'email: '+${announcement.subjects.level}"></p>-->
+<!--					<h2 style="text-align: center;" th:text="${announcement.subjects.name }"></h2>-->
+	                <p th:text="'Location: '+${announcement.location}"></p>
+					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+	                <p th:text="'email: '+${announcement.subjects.level}"></p>
 	              </div>
 	            </div>
 	          </a>
