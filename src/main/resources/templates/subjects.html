@@ -42,22 +42,19 @@
 	      <div th:if="${subjects==null || subjects.isEmpty()}">
 	        Non ci sono annunci nel sistema
 	      </div>
-	      <ul class="persons-container">
-	        <li th:each="subject: ${subjects}">
-<!--	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">-->
-	            <div class="professor-widget">
-	              <div class="professor-widget-info">
-					<h2 style="text-align: center;" th:text="${subject}"></h2>
-<!--	                <p th:text="'Location: '+${announcement.location}"></p>-->
-<!--					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>-->
-<!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
-<!--	                <p th:text="'email: '+${announcement.subjects.level}"></p>-->
-	              </div>
-	            </div>
-	          </a>
-	        </li>
-	      </ul>
-	    </section>
-
+		  
+		      <ul class="persons-container">
+		        <li th:each="subject: ${subjects}">
+					<a th:href="@{'/announcementsOfSubject' + '/' + ${subject}}">
+			            <div class="professor-widget">
+			              <div class="professor-widget-info">
+							<h2 style="text-align: center;" th:text="${subject}"></h2>
+			              </div>
+			            </div>
+					</a>
+		        </li>
+		      </ul>
+		  
+	</section>
   </body>
 </html>

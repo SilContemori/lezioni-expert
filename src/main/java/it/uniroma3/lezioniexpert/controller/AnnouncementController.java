@@ -48,7 +48,7 @@ public class AnnouncementController {
 	}
 	
 	/*GET DI TUTTI I TIPI DI ANNUNCI PER MATERIA*/
-	@GetMapping("/annunciPerMateria")
+	@GetMapping("/subjects")
 	public String getAnnouncementForSubject(Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
@@ -57,33 +57,14 @@ public class AnnouncementController {
 			model.addAttribute("professor", credentials.getProfessor());
 		}
 		List<String> subjectsNames =new ArrayList<>();
-		
-		
 		for(Subject s:this.subjectRepository.findAll()) {
 			System.out.println("subject----------------------------"+s.getName());
-//			if(subjects!=null) {
 			if(!subjectsNames.contains(s.getName()) ) {
 				subjectsNames.add(s.getName());
-			}
-//				for(Subject s1: subjects) {
-//					System.out.println("s-------------------------------"+s.getName());
-//					System.out.println("s1-------------------------------"+s1.getName());
-//					if(!s.getName().equals(s1.getName())) {
-//						System.out.println("adding....");
-//						subjects.add(s);
-//					}
-//				}
-//			}
+			}	
 		}
-//		System.out.println("size---------------------------"+subjects.size());
-		
-//		for(int i=0;i<subjects.size();i++) {
-//			System.out.println("elem---------------------------"+subjects.get(i));
-//		}
-		
 		model.addAttribute("subjects", subjectsNames);
-		return "announcementsBySubject.html";
-		
+		return "subjects.html";
 	}
 	
 	/*GET DELLA PAGINA CON IL SINGOLO ANNUNCIO*/
@@ -110,6 +91,27 @@ public class AnnouncementController {
 		model.addAttribute("ricetta", this.announcementRepository.findById(id).get());
 		model.addAttribute("credentials", credentials);
 		return "announcement.html";
+	}
+	
+	/*GET DELLA PAGINA DEGLI ANNUNCI RELATIVI AD UNA MATERIA*/
+	@GetMapping("/announcementsOfSubject/{subjectName}")
+	public String getAnnouncementOfSubject(Model model,@PathVariable String subjectName) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		model.addAttribute("announcements", this.announcementRepository.findAll());
+		if(credentials.getProfessor()!=null) {
+			model.addAttribute("professor", credentials.getProfessor());
+		}
+		List<Announcement> announcementsOfSubject=new ArrayList<>();
+		for(Announcement a:this.announcementRepository.findAll()) {
+			if(a.getSubjects().getName().equals(subjectName)) {
+				announcementsOfSubject.add(a);
+			}
+		}
+		model.addAttribute("subjectName", subjectName);
+		model.addAttribute("announcements", announcementsOfSubject);
+		return "announcementsOfSubject.html";
+		
 	}
 	
 	
