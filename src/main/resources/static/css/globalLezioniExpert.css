@@ -3,6 +3,7 @@
 :root {
   --red: #fe4e5c;
   --grey-blue: #385a64;
+  --grey-blueish: #2a434a;
   --defalut-text-color: black;
 }
 
@@ -119,6 +120,46 @@ header {
   height: auto;
 }
 
+.btn-bg-red-hover-reddish {
+  padding: 10px 40px;
+  border-radius: 0.3rem;
+  background-color: #fe4e5c;
+  color: white;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-bg-red-hover-reddish:hover {
+  background: #bc343e;
+}
+
+.btn-bg-trs-hover-red {
+  padding: 10px 40px;
+  border: var(--red) solid 1px;
+  border-radius: 0.3rem;
+  background-color: transparent;
+  color: var(--red);
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-bg-trs-hover-red:hover {
+  background: var(--red);
+  color: white;
+}
+
+.btn-bg-blue-hover-blueish {
+  padding: 10px 40px;
+  border-radius: 0.3rem;
+  background-color: var(--grey-blue);
+  color: white;
+  font-weight: 500;
+  text-align: center;
+}
+
+.btn-bg-blue-hover-blueish:hover {
+  background: var(--grey-blueish);
+}
 @media only screen and (min-width: 800px) {
   #menu-icon {
     display: none;

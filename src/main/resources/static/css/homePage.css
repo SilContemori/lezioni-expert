@@ -26,18 +26,6 @@
   margin: 0.5rem 0 1.4rem;
 }
 
-.btn {
-  padding: 10px 40px;
-  border-radius: 0.3rem;
-  background-color: #fe4e5c;
-  color: white;
-  font-weight: 500;
-}
-
-.btn:hover {
-  background: #bc343e;
-}
-
 .about {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
