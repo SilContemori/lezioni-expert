@@ -31,28 +31,10 @@
           <a class="link" th:unless="${userDetails}" href="/login">
             <i class="bx bxs-log-in header-icon"></i>
           </a>
-
-          <a href="/profilePage">
-            <li th:if="${professor}" class="profile-image">
-              <img
-                th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-          <div th:if="${userDetails}">
-            <a href="/profilePage">
-              <li th:unless="${professor}" class="profile-image-user">
-                <img
-                  src="/images/userProfile.png"
-                  alt="immagine del professore"
-                />
-              </li>
-            </a>
-          </div>
         </ul>
       </div>
     </header>
+
     <div class="container">
       <div class="form-container">
         <h1 class="title">Login</h1>

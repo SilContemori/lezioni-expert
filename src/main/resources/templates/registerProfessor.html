@@ -6,6 +6,10 @@
     <title>Sing up</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
     <link rel="stylesheet" href="/css/authPage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <header>
@@ -27,23 +31,6 @@
             <i class="bx bxs-log-in header-icon"></i>
           </a>
 
-          <a href="/profilePage">
-            <li th:if="${professor}" class="profile-image">
-              <img
-                th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-          <div th:if="${userDetails}">
-            <a href="/profilePage">
-              <li th:unless="${professor}" class="profile-image-user">
-                <img
-                  src="/images/userProfile.png"
-                  alt="immagine del professore"
-                />
-              </li>
-            </a>
           </div>
         </ul>
       </div>
