@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Lezioni Expert</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/carousell.css" />
     <link rel="stylesheet" href="/css/professorProfilePage.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -66,7 +67,9 @@
             />
           </div>
           <div class="div-btn">
-            <a href="" class="btn-bg-red-hover-reddish">Aggiungi Annuncio</a>
+            <a href="/formNewAnnouncement" class="btn-bg-red-hover-reddish"
+              >Aggiungi Annuncio</a
+            >
             <a href="" class="btn-bg-trs-hover-red"
               >Aggiungi Titolo di studio</a
             >
@@ -113,10 +116,30 @@
       </div>
     </section>
 
-    <section class="announcements-section">
+    <section
+      th:unless="${#lists.isEmpty(professor.announcements)}"
+      class="announcements-section"
+    >
       <h3 class="announcements-section-title">I tuoi Annunci:</h3>
 
-      <div></div>
+      <ul class="carousell-container">
+        <li th:each="announcement: ${professor.announcements}">
+          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
+            <div class="carousell-widget">
+              <div class="carousell-widget-info">
+                <h2
+                  style="text-align: center"
+                  th:text="${announcement.subjects.name }"
+                ></h2>
+                <p th:text="'Location: '+${announcement.location}"></p>
+                <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+                <!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
+                <p th:text="'email: '+${announcement.subjects.level}"></p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
     </section>
   </body>
 </html>
