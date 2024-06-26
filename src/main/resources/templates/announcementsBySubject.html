@@ -38,20 +38,20 @@
       </div>
     </header>
 	<section class="first-section">
-	      <h2>Annunci</h2>
-	      <div th:if="${announcements==null || announcements.isEmpty()}">
+	      <h2>Annunci Per Materia</h2>
+	      <div th:if="${subjects==null || subjects.isEmpty()}">
 	        Non ci sono annunci nel sistema
 	      </div>
 	      <ul class="persons-container">
-	        <li th:each="announcement: ${announcements}">
-	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
+	        <li th:each="subject: ${subjects}">
+<!--	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">-->
 	            <div class="professor-widget">
 	              <div class="professor-widget-info">
-					<h2 style="text-align: center;" th:text="${announcement.subjects.name }"></h2>
-	                <p th:text="'Location: '+${announcement.location}"></p>
-					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+					<h2 style="text-align: center;" th:text="${subject}"></h2>
+<!--	                <p th:text="'Location: '+${announcement.location}"></p>-->
+<!--					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>-->
 <!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
-	                <p th:text="'email: '+${announcement.subjects.level}"></p>
+<!--	                <p th:text="'email: '+${announcement.subjects.level}"></p>-->
 	              </div>
 	            </div>
 	          </a>
