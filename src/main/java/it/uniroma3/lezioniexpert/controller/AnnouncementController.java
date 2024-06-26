@@ -156,4 +156,33 @@ public class AnnouncementController {
 			}
 		}
 	}
+	
+	/*GET PER RIMUOVERE UN ANNUNCIO*/
+	@GetMapping("/removeAnnouncement/{idAnnouncement}")
+	public String removeAnnouncement(@PathVariable Long idAnnouncement,Model model) {
+		Announcement a=this.announcementRepository.findById(idAnnouncement).orElse(null);
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if(credentials.getRole().equals(PROFESSOR_ROLE)) {
+			if(a.getProfessor()!=null) {
+				Professor p=a.getProfessor();
+				Subject s=a.getSubjects();
+				a.setProfessor(null);
+				a.setSubjects(null);
+				p.getAnnouncements().remove(a);
+				s.setAnnouncement(null);
+				this.announcementRepository.delete(a);
+			}else {
+				Subject s=a.getSubjects();
+				a.setProfessor(null);
+				a.setSubjects(null);
+				s.setAnnouncement(null);
+				this.announcementRepository.delete(a);
+			}
+			//ritorna alla pagina dove è stato messo il remove degli annunci del professore
+			return "";
+		}
+		//ritorna alla pagina dove è stato messo il remove degli annunci dell'admin
+		return "announcements.html";
+	}
 }

@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 public class Professor {
@@ -26,79 +27,11 @@ public class Professor {
 
 	@ManyToMany
 	private List<Subject> teachings;
-	@ManyToMany
+	
+	@OneToMany(mappedBy="professor")
 	private List<Education> educations;
 	@OneToMany
 	private List<Announcement> announcements;
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + ((surname == null) ? 0 : surname.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
-		result = prime * result + ((age == null) ? 0 : age.hashCode());
-		result = prime * result + ((teachings == null) ? 0 : teachings.hashCode());
-		result = prime * result + ((educations == null) ? 0 : educations.hashCode());
-		result = prime * result + ((announcements == null) ? 0 : announcements.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Professor other = (Professor) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (surname == null) {
-			if (other.surname != null)
-				return false;
-		} else if (!surname.equals(other.surname))
-			return false;
-		if (description == null) {
-			if (other.description != null)
-				return false;
-		} else if (!description.equals(other.description))
-			return false;
-		if (age == null) {
-			if (other.age != null)
-				return false;
-		} else if (!age.equals(other.age))
-			return false;
-		if (teachings == null) {
-			if (other.teachings != null)
-				return false;
-		} else if (!teachings.equals(other.teachings))
-			return false;
-		if (educations == null) {
-			if (other.educations != null)
-				return false;
-		} else if (!educations.equals(other.educations))
-			return false;
-		if (announcements == null) {
-			if (other.announcements != null)
-				return false;
-		} else if (!announcements.equals(other.announcements))
-			return false;
-		return true;
-	}
-	
-	
 	
 	public Images getProfileImage() {
 		return profileImage;
@@ -160,6 +93,26 @@ public class Professor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(age, description, email, name, surname);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Professor other = (Professor) obj;
+		return Objects.equals(age, other.age) && Objects.equals(description, other.description)
+				&& Objects.equals(email, other.email) && Objects.equals(name, other.name)
+				&& Objects.equals(surname, other.surname);
+	}
+	
+	
 	
 
 }

@@ -22,8 +22,10 @@ public class Education {
 	private Long endYear;
 	@NotNull
 	private Integer vote;
-	@ManyToMany(mappedBy="educations")
-	private List<Professor> professor;
+	
+	@ManyToOne
+	private Professor professor;
+	
 	public Long getId() {
 		return id;
 	}
@@ -67,10 +69,11 @@ public class Education {
 	public void setVote(Integer vote) {
 		this.vote = vote;
 	}
-	public List<Professor> getProfessor() {
+	
+	public Professor getProfessor() {
 		return professor;
 	}
-	public void setProfessor(List<Professor> professor) {
+	public void setProfessor(Professor professor) {
 		this.professor = professor;
 	}
 	@Override
