@@ -57,25 +57,59 @@
       <h2 class="dettagli-section-title">Il tuo Profilo</h2>
 
       <div class="professor-container">
-        <div class="image-container">
-          <img
-            class="professor-image"
-            th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-            alt="immagine del professore"
-          />
+        <div class="div-img-bnts">
+          <div class="image-container">
+            <img
+              class="professor-image"
+              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+              alt="immagine del professore"
+            />
+          </div>
+          <button>Aggiungi Annuncio</button>
+          <button>Aggiungi Titolod id studio</button>
+          <button>Aggiungi Materia di competenza</button>
+          <button>Modifica Profilo</button>
         </div>
 
         <div class="info-container">
-          <p th:text="'Nome: '+ ${professor.name}"></p>
-          <p th:text="'Cognome: '+ ${professor.surname}"></p>
-          <p th:text="'Età: '+ ${professor.age}"></p>
-          <p th:text="'Descrizione: '+ ${professor.description}"></p>
+          <div>
+            <p
+              class=""
+              style="font-size: 1.5rem"
+              th:text="'Nome: '+ ${professor.name}"
+            ></p>
+          </div>
+          <div>
+            <p th:text="'Cognome: '+ ${professor.surname}"></p>
+          </div>
+          <div>
+            <p th:text="'Email: '+ ${professor.email}"></p>
+          </div>
+          <div>
+            <p th:text="'Età: '+ ${professor.age}"></p>
+          </div>
+          <div>
+            <p>Descrizione:</p>
+            <p th:text="${professor.description}"></p>
+          </div>
+          <div>
+            <p>Materie:</p>
+            <!-- <p th:text="${professor.description}"></p> -->
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,
+              quisquam!
+            </p>
+          </div>
+          <div>
+            <p>Titolo di studio: Harvard, peano</p>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="announcements-section">
       <h3 class="announcements-section-title">I tuoi Annunci:</h3>
+
       <div></div>
     </section>
   </body>
