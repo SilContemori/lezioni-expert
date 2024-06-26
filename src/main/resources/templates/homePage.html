@@ -25,11 +25,20 @@
           <li><a href="/professors">Professori</a></li>
           <li><a href="/announcements">Annunci</a></li>
 			<a th:if="${userDetails}" href="/logout">		  
-				<i class='bx bxs-log-out header-icon' ></i>				
+				<i class='bx bxs-log-out header-icon' ></i>	
 			</a>
 			<a th:unless="${userDetails}" href="/login">		  
             	<i class="bx bxs-log-in header-icon"></i>				
 			</a>
+			
+			<li th:if="${professor}"class="profile-image">
+				<img th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"alt="immagine del professore" />
+			</li>
+			<div th:if="${userDetails}">
+				<li th:unless="${professor}"class="profile-image-user">
+					<img src="/images/userProfile.png"alt="immagine del professore" />
+				  </li>
+			</div>
         </ul>
       </div>
     </header>

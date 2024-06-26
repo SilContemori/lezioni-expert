@@ -29,6 +29,12 @@
           <a th:unless="${userDetails}" href="/login">
             <i class="bx bxs-log-in header-icon"></i>
           </a>
+		  <li th:if="${currentProfessor}"class="profile-image">
+			<img th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"alt="immagine del professore" />
+		  </li>
+  		  <li th:unless="${currentProfessor}"class="profile-image-user">
+  			<img src="/images/userProfile.png"alt="immagine del professore" />
+  		  </li>
         </ul>
       </div>
     </header>
@@ -43,7 +49,6 @@
           <a th:href="@{'/professor' + '/' + ${professor.id}}">
             <div class="professor-widget">
               <div class="professor-widget-image-container">
-                <!-- <img src="/images/uomo.png" /> -->
                 <img
                   th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
                   alt="immagine del professore"

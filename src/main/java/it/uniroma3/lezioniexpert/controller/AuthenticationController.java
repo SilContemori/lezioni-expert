@@ -45,8 +45,8 @@ public class AuthenticationController {
 		else {		
 			UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-			if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-//				return "admin/indexAdmin.html";
+			if (credentials.getProfessor()!=null) {
+				model.addAttribute("professor", credentials.getProfessor());
 				return "homePage.html";
 			}
 		}
@@ -128,8 +128,8 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if(credentials.getRole()!=null) {
-	    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-	//            return "admin/indexAdmin.html";
+	    	if (credentials.getProfessor()!=null) {
+	    		model.addAttribute("professor", credentials.getProfessor());
 	    		return "homePage.html";
 	        }
     	}

@@ -30,8 +30,6 @@
   padding: 10px 40px;
   border-radius: 0.3rem;
   background-color: #fe4e5c;
-  /*	 rgb(221, 119, 119);*/
-  /*	background-position: brown;*/
   color: white;
   font-weight: 500;
 }
@@ -43,13 +41,7 @@
 .about {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(17rem, auto));
-  /*	align-items: center;*/
   gap: 1.5rem;
-  /*	display: flex;*/
-  /*	flex-direction: row;*/
-  /*	justify-content: start;*/
-  /*	align-items: center;*/
-  /*	gap: 1.5rem;*/
 }
 
 .about-img img {
@@ -74,6 +66,29 @@
   font-size: 1.8rem;
   text-transform: uppercase;
 }
+
+.profile-image {
+  display: inline-block;
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+ }
+ 
+  .profile-image-user {
+  display: inline-block;
+  width: 40px; 
+  height: 40px; 
+  border-radius: 50%; 
+  overflow: hidden; 
+  border: 2px solid white;
+ }
+
+.profile-image img {
+  width: 100%;
+  height: auto; 
+}
+
 
 @media only screen and (min-width: 800px) {
   .home {

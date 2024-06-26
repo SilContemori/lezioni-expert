@@ -12,8 +12,6 @@ public class Announcement {
 	private Long id;
 	@NotNull
 	private String location;
-	// @ManyToOne
-	// private Student student;
 	@ManyToOne
 	private Professor professor;
 	private Integer hourlyRate;//budget se per studente

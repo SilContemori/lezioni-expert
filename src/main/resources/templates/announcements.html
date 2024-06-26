@@ -26,31 +26,41 @@
 			<a th:unless="${userDetails}" href="/login">		  
             	<i class="bx bxs-log-in header-icon"></i>				
 			</a>
+			<li th:if="${currentProfessor}"class="profile-image">
+				<img th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"alt="immagine del professore" />
+			  </li>
+	  		  <li th:unless="${currentProfessor}"class="profile-image-user">
+	  			<img src="/images/userProfile.png"alt="immagine del professore" />
+	  		  </li>
         </ul>
       </div>
     </header>
+	<section class="first-section">
+	      <h2>Professors</h2>
+	      <div th:if="${announcements==null || announcements.isEmpty()}">
+	        Non ci sono professori nel sistema
+	      </div>
+	      <ul class="persons-container">
+	        <li th:each="announcement: ${announcements}">
+	          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
+	            <div class="professor-widget">
+	              <div class="professor-widget-image-container">
+<!--	                <img-->
+<!--	                  th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"-->
+<!--	                  alt="immagine del professore"-->
+<!--	                />-->
+	              </div>
+	              <div class="professor-widget-info"></div>
+	                <p th:text="'Location: '+${announcement.location}"></p>
+					<p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>
+	                <p th:text="'email: '+${announcement.subjects.level}"></p>
+	              </div>
+	            </div>
+	          </a>
+	        </li>
+	      </ul>
+	    </section>
 
-<!--    <section class="first-section">-->
-<!--      <h2>Professors</h2>-->
-<!--      <div th:if="${professors==null || professors.isEmpty()}">-->
-<!--        Non ci sono professori nel sistema-->
-<!--      </div>-->
-<!--      <ul class="persons-container">-->
-<!--        <li th:each="professor: ${professors}">-->
-<!--          <a th:href="@{'/professor' + '/' + ${professor.id}}">-->
-<!--            <div class="professor-widget">-->
-<!--              <div class="professor-widget-image-container">-->
-<!--                <img src="/images/uomo.png" />-->
-<!--              </div>-->
-<!--              <div class="professor-widget-info">-->
-<!--                <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>-->
-<!--                <p th:text="'età: '+${professor.age}"></p>-->
-<!--                <p th:text="'email: '+${professor.email}"></p>-->
-<!--              </div>-->
-<!--            </div>-->
-<!--          </a>-->
-<!--        </li>-->
-<!--      </ul>-->
-<!--    </section>-->
   </body>
 </html>

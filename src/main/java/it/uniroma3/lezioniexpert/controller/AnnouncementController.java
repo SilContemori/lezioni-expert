@@ -22,6 +22,7 @@ import it.uniroma3.lezioniexpert.model.Professor;
 import it.uniroma3.lezioniexpert.model.Subject;
 import it.uniroma3.lezioniexpert.repository.AnnouncementRepository;
 import it.uniroma3.lezioniexpert.repository.ProfessorRepository;
+import it.uniroma3.lezioniexpert.repository.SubjectRepository;
 import it.uniroma3.lezioniexpert.service.CredentialsService;
 import jakarta.validation.Valid;
 
@@ -30,6 +31,7 @@ public class AnnouncementController {
 	@Autowired AnnouncementRepository announcementRepository;
 	@Autowired ProfessorRepository professorRepository;
 	@Autowired CredentialsService credentialsService;
+	@Autowired SubjectRepository subjectRepository;
 	
 	/*GET DELLA PAGINA DEGLI ANNUNCI*/
 	@GetMapping("/announcements")
@@ -71,7 +73,6 @@ public class AnnouncementController {
 	public String formNewRicetta(Model model) {
 		Announcement announcement=new Announcement();
 		Subject s=new Subject();
-		announcement.setSubjects(s);
 		model.addAttribute("announcement", announcement);
 		model.addAttribute("subject", s);
 		return "formNewAnnouncement.html";
@@ -79,7 +80,7 @@ public class AnnouncementController {
 	
 
 	@PostMapping(value={"/announcement"})
-	public String newAnnouncement(@Valid @ModelAttribute Announcement announcement,BindingResult bindingResult, Model model) {
+	public String newAnnouncement(@Valid @ModelAttribute Announcement announcement,@ModelAttribute Subject subject,BindingResult bindingResult, Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if(credentials.getRole().equals(PROFESSOR_ROLE)) {
@@ -88,6 +89,8 @@ public class AnnouncementController {
 			if (!bindingResult.hasErrors()) {
 				announcement.setProfessor(p);
 				this.announcementRepository.save(announcement);
+				announcement.setSubjects(subject);
+				this.subjectRepository.save(subject);
 				p.getAnnouncements().add(announcement);
 				this.professorRepository.save(p); 
 				return "redirect:/announcement/"+announcement.getId();
@@ -97,6 +100,7 @@ public class AnnouncementController {
 		}else {
 			if (!bindingResult.hasErrors()) {
 				this.announcementRepository.save(announcement); 
+				this.subjectRepository.save(announcement.getSubjects());
 				return "redirect:/announcement/"+announcement.getId();
 			}else {
 				return "formNewAnnouncement.html"; 
