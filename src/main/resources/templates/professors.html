@@ -3,6 +3,7 @@
   <head>
     <title>Professors</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/carousell.css" />
     <link rel="stylesheet" href="/css/professors.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
@@ -55,17 +56,17 @@
       <div th:if="${professors==null || professors.isEmpty()}">
         Non ci sono professori nel sistema
       </div>
-      <ul class="persons-container">
+      <ul class="carousell-container">
         <li th:each="professor: ${professors}">
           <a th:href="@{'/professor' + '/' + ${professor.id}}">
-            <div class="professor-widget">
-              <div class="professor-widget-image-container">
+            <div class="carousell-widget">
+              <div class="carousell-widget-image-container">
                 <img
                   th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
                   alt="immagine del professore"
                 />
               </div>
-              <div class="professor-widget-info">
+              <div class="carousell-widget-info">
                 <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>
                 <p th:text="'età: '+${professor.age}"></p>
                 <p th:text="'email: '+${professor.email}"></p>
