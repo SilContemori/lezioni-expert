@@ -12,10 +12,10 @@ public class Announcement {
 	private Long id;
 	@NotNull
 	private String location;
-	@ManyToOne
-	private Professor professor;
 	private Integer hourlyRate;//budget se per studente
 	@ManyToOne
+	private Professor professor;
+	@OneToOne
 	private Subject subjects;
 	
 	public Long getId() {
