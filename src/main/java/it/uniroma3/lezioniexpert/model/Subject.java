@@ -33,42 +33,54 @@ public class Subject {
 		result = prime * result + ((announcements == null) ? 0 : announcements.hashCode());
 		return result;
 	}
+	
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Subject other = (Subject) obj;
+//		if (id == null) {
+//			if (other.id != null)
+//				return false;
+//		} else if (!id.equals(other.id))
+//			return false;
+//		if (level == null) {
+//			if (other.level != null)
+//				return false;
+//		} else if (!level.equals(other.level))
+//			return false;
+//		if (name == null) {
+//			if (other.name != null)
+//				return false;
+//		} else if (!name.equals(other.name))
+//			return false;
+//		if (professor == null) {
+//			if (other.professor != null)
+//				return false;
+//		} else if (!professor.equals(other.professor))
+//			return false;
+//		if (announcements == null) {
+//			if (other.announcements != null)
+//				return false;
+//		} else if (!announcements.equals(other.announcements))
+//			return false;
+//		return true;
+//	}
+	
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Subject other = (Subject) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (level == null) {
-			if (other.level != null)
-				return false;
-		} else if (!level.equals(other.level))
-			return false;
-		if (name == null) {
-			if (other.name != null)
-				return false;
-		} else if (!name.equals(other.name))
-			return false;
-		if (professor == null) {
-			if (other.professor != null)
-				return false;
-		} else if (!professor.equals(other.professor))
-			return false;
-		if (announcements == null) {
-			if (other.announcements != null)
-				return false;
-		} else if (!announcements.equals(other.announcements))
-			return false;
-		return true;
+		Subject sub = (Subject ) obj;
+//		if(this.name.toLowerCase().equals(sub.name.toLowerCase()) ) {
+//			return this.level.toLowerCase().equals(sub.level.toLowerCase());
+//		}
+		return (this.name.toLowerCase().equals(sub.name.toLowerCase()) && this.level.toLowerCase().equals(sub.level));
 	}
+	
+	
 	public Long getId() {
 		return id;
 	}
