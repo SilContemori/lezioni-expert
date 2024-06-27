@@ -24,6 +24,7 @@ section {
 
   gap: 1rem;
 }
+
 .div-img-bnts {
   display: flex;
   flex-direction: column;
@@ -94,15 +95,24 @@ section {
   font-size: 1.2rem;
 }
 
-.info-container > div {
+.info-container > .div-info-border-blue {
   border: var(--grey-blue) solid 1px;
   border-radius: 5px;
   padding: 0.5rem 0.5rem;
+}
+
+.info-div-btn {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
 }
 
 @media only screen and (min-width: 800px) {
   .professor-container {
     flex-direction: row;
     align-items: stretch;
+  }
+  .info-div-btn {
+    flex-direction: row;
   }
 }
