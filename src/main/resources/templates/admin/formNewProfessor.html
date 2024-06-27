@@ -1,0 +1,149 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8" />-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0" />-->
+<!--    <title>Add Professor</title>-->
+<!--    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />-->
+<!--    <link rel="stylesheet" href="/css/authPage.css" />-->
+<!--    <link-->
+<!--      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"-->
+<!--      rel="stylesheet"-->
+<!--    />-->
+<!--  </head>-->
+<!--  <body>-->
+<!--    <header>-->
+<!--      <div class="header-container">-->
+<!--        <a href="/" class="logo">-->
+<!--          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>-->
+<!--        </a>-->
+<!--        <i class="bx bx-menu" id="menu-icon"></i>-->
+
+<!--        <ul class="navbar">-->
+<!--          <li><a class="link" href="/">Home</a></li>-->
+<!--          <li><a class="link" href="/subjects">Materie</a></li>-->
+<!--          <li><a class="link" href="/professors">Professori</a></li>-->
+<!--          <li><a class="link" href="/announcements">Annunci</a></li>-->
+<!--          <a class="link" th:if="${userDetails}" href="/logout">-->
+<!--            <i class="bx bxs-log-out header-icon"></i>-->
+<!--          </a>-->
+<!--          <a class="link" th:unless="${userDetails}" href="/login">-->
+<!--            <i class="bx bxs-log-in header-icon"></i>-->
+<!--          </a>-->
+
+<!--          </div>-->
+<!--        </ul>-->
+<!--      </div>-->
+<!--    </header>-->
+
+<!--    <div class="container">-->
+<!--      <div class="form-container">-->
+<!--        <h1 class="title">Add Professor</h1>-->
+<!--        <form th:action="@{/admin/professor}" method="POST" th:object="${professor}" enctype="multipart/form-data"-->
+<!--        >-->
+<!--          <div class="input-div">-->
+<!--            <input-->
+<!--              class="input input-username"-->
+<!--              type="text"-->
+<!--              placeholder="name"-->
+<!--              required-->
+<!--              th:field="${professor.name}"-->
+<!--            />-->
+<!--          </div>-->
+<!--          <div class="input-div">-->
+<!--            <input-->
+<!--              class="input input-username"-->
+<!--              type="text"-->
+<!--              placeholder="surname"-->
+<!--              required-->
+<!--              th:field="${professor.surname}"-->
+<!--            />-->
+<!--          </div>-->
+<!--         <div class="input-div">-->
+<!--            <input-->
+<!--              class="input"-->
+<!--              type="number"-->
+<!--              placeholder="age"-->
+<!--              required-->
+<!--              th:field="${professor.age}"-->
+<!--            />-->
+<!--          </div>-->
+
+<!--          <div class="input-div">-->
+<!--				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>-->
+<!--          </div>-->
+
+<!--          <input-->
+<!--            name="file"-->
+<!--            type="file"-->
+<!--            id="file-upload"-->
+<!--            accept="image/png , image/jpeg"-->
+<!--            required-->
+<!--            onchange="updateFileName(this)"-->
+<!--          />-->
+<!--          <div class="btn-div">-->
+<!--            <button class="btn-form btn-login" type="submit">Conferma</button>-->
+<!--          </div>-->
+<!--        </form>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Professor</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css">
+    <link rel="stylesheet" href="/css/authPage.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <a href="/" class="logo">
+            <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+        <ul class="navbar">
+            <li><a class="link" href="/">Home</a></li>
+            <li><a class="link" href="/subjects">Materie</a></li>
+            <li><a class="link" href="/professors">Professori</a></li>
+            <li><a class="link" href="/announcements">Annunci</a></li>
+            <li><a class="link" th:if="${userDetails}" href="/logout">
+                <i class="bx bxs-log-out header-icon"></i>
+            </a></li>
+            <li><a class="link" th:unless="${userDetails}" href="/login">
+                <i class="bx bxs-log-in header-icon"></i>
+            </a></li>
+        </ul>
+    </div>
+</header>
+
+<div class="container">
+    <div class="form-container">
+        <h1 class="title">Add Professor</h1>
+		 <form th:action="@{/admin/aggiungiProfessor}" method="POST" th:object="${professor}" enctype="multipart/form-data">
+            <div class="input-div">
+                <input class="input input-username" type="text" placeholder="name" required th:field="${professor.name}">
+            </div>
+            <div class="input-div">
+                <input class="input input-username" type="text" placeholder="surname" required th:field="${professor.surname}">
+            </div>
+            <div class="input-div">
+                <input class="input" type="number" placeholder="age" required th:field="${professor.age}">
+            </div>
+            <div class="input-div">
+                <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+            </div>
+			<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required /></span>
+<!--            <input name="file" type="file" accept="image/png, image/jpeg" required >-->
+            <div class="btn-div">
+                <button class="btn-form btn-login" type="submit">Conferma</button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
