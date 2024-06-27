@@ -1,0 +1,48 @@
+section {
+  max-width: 900px;
+}
+
+.announcement-section {
+  margin-top: 100px;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.announcement-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* flex-direction: row;
+  justify-content: stretch; */
+}
+
+.announcement-div {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: stretch; */
+  width: 100%;
+  border: var(--grey-blue) solid 3px;
+  border-radius: 20px;
+  padding: 2rem 1rem;
+}
+
+.professor-widget {
+  max-width: 300px;
+  border: var(--grey-blue) solid 3px;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.professor-widget-info {
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 800px) {
+  .announcement-container {
+    flex-direction: row;
+  }
+}
