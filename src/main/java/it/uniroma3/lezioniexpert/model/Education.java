@@ -14,7 +14,7 @@ public class Education {
 	@NotNull
 	private String schoolName;
 	@NotNull
-	private Integer durationInMonth;
+	private Long durationInMonth;
 	@NotNull
 	private Long startYear;
 	@NotNull
@@ -44,10 +44,10 @@ public class Education {
 	public void setSchoolName(String schoolName) {
 		this.schoolName = schoolName;
 	}
-	public Integer getDurationInMonth() {
+	public Long getDurationInMonth() {
 		return durationInMonth;
 	}
-	public void setDurationInMonth(Integer durationInMonth) {
+	public void setDurationInMonth(Long durationInMonth) {
 		this.durationInMonth = durationInMonth;
 	}
 	public Long getStartYear() {
