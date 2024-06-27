@@ -13,8 +13,6 @@ public class Subject {
 	private String level;
 	@NotNull
 	private String name;	
-	@ManyToMany(mappedBy="teachings")
-	private List<Professor> professor;
 	@OneToOne(mappedBy="subjects")
 	private Announcement announcement;
 	
@@ -46,12 +44,6 @@ public class Subject {
 	}
 	public void setName(String nome) {
 		this.name = nome;
-	}
-	public List<Professor> getProfessor() {
-		return professor;
-	}
-	public void setProfessor(List<Professor> professor) {
-		this.professor = professor;
 	}
 
 	public Announcement getAnnouncement() {

@@ -24,9 +24,6 @@ public class Professor {
 	
 	@OneToOne
 	private Images profileImage;
-
-	@ManyToMany
-	private List<Subject> teachings;
 	
 	@OneToMany(mappedBy="professor")
 	private List<Education> educations;
@@ -69,12 +66,7 @@ public class Professor {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
-	public List<Subject> getTeachings() {
-		return teachings;
-	}
-	public void setTeachings(List<Subject> teachings) {
-		this.teachings = teachings;
-	}
+
 	public List<Education> getEducations() {
 		return educations;
 	}
