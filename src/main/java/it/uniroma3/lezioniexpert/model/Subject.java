@@ -1,5 +1,4 @@
 package it.uniroma3.lezioniexpert.model;
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -13,7 +12,7 @@ public class Subject {
 	private String level;
 	@NotNull
 	private String name;	
-	@OneToOne(mappedBy="subjects")
+	@OneToOne(mappedBy="subject")
 	private Announcement announcement;
 	
 	@Override

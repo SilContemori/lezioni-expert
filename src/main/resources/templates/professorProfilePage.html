@@ -129,12 +129,12 @@
               <div class="carousell-widget-info">
                 <h2
                   style="text-align: center"
-                  th:text="${announcement.subjects.name }"
+                  th:text="${announcement.subject.name }"
                 ></h2>
                 <p th:text="'Location: '+${announcement.location}"></p>
                 <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
                 <!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
-                <p th:text="'email: '+${announcement.subjects.level}"></p>
+                <p th:text="'email: '+${announcement.subject.level}"></p>
               </div>
             </div>
           </a>

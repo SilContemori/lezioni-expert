@@ -15,7 +15,7 @@ public class Announcement {
 	@ManyToOne
 	private Professor professor;
 	@OneToOne
-	private Subject subjects;
+	private Subject subject;
 	
 	public Long getId() {
 		return id;
@@ -42,11 +42,11 @@ public class Announcement {
 		this.hourlyRate = hourlyRate;
 	}
 	
-	public Subject getSubjects() {
-		return subjects;
+	public Subject getSubject() {
+		return subject;
 	}
-	public void setSubjects(Subject subjects) {
-		this.subjects = subjects;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	@Override
 	public int hashCode() {
