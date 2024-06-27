@@ -104,8 +104,10 @@ public class AnnouncementController {
 		}
 		List<Announcement> announcementsOfSubject=new ArrayList<>();
 		for(Announcement a:this.announcementRepository.findAll()) {
-			if(a.getSubjects().getName().equals(subjectName)) {
-				announcementsOfSubject.add(a);
+			if(a.getSubjects()!=null) {
+				if(a.getSubjects().getName().equals(subjectName)) {
+					announcementsOfSubject.add(a);
+				}
 			}
 		}
 		model.addAttribute("subjectName", subjectName);
