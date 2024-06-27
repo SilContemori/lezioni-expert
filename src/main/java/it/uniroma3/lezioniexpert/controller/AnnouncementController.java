@@ -104,8 +104,10 @@ public class AnnouncementController {
 		}
 		List<Announcement> announcementsOfSubject=new ArrayList<>();
 		for(Announcement a:this.announcementRepository.findAll()) {
-			if(a.getSubjects().getName().equals(subjectName)) {
-				announcementsOfSubject.add(a);
+			if(a.getSubject()!=null) {
+				if(a.getSubject().getName().equals(subjectName)) {
+					announcementsOfSubject.add(a);
+				}
 			}
 		}
 		model.addAttribute("subjectName", subjectName);
@@ -138,18 +140,22 @@ public class AnnouncementController {
 				subject.setName(subject.getName().toLowerCase());
 				subject.setLevel(subject.getLevel().toLowerCase());
 				this.announcementRepository.save(announcement);
-				announcement.setSubjects(subject);
+				announcement.setSubject(subject);
 				this.subjectRepository.save(subject);
 				p.getAnnouncements().add(announcement);
-				this.professorRepository.save(p); 
+				this.professorRepository.save(p);this.professorRepository.save(p); 
 				return "redirect:/announcement/"+announcement.getId();
 			} else {
 				return "formNewAnnouncement.html"; 
 			}
 		}else {
 			if (!bindingResult.hasErrors()) {
-				this.announcementRepository.save(announcement); 
-				this.subjectRepository.save(announcement.getSubjects());
+				subject.setName(subject.getName().toLowerCase());
+				subject.setLevel(subject.getLevel().toLowerCase());
+				this.announcementRepository.save(announcement);
+				announcement.setSubject(subject);
+				this.subjectRepository.save(subject);
+
 				return "redirect:/announcement/"+announcement.getId();
 			}else {
 				return "formNewAnnouncement.html"; 
@@ -166,16 +172,16 @@ public class AnnouncementController {
 		if(credentials.getRole().equals(PROFESSOR_ROLE)) {
 			if(a.getProfessor()!=null) {
 				Professor p=a.getProfessor();
-				Subject s=a.getSubjects();
+				Subject s=a.getSubject();
 				a.setProfessor(null);
-				a.setSubjects(null);
+				a.setSubject(null);
 				p.getAnnouncements().remove(a);
 				s.setAnnouncement(null);
 				this.announcementRepository.delete(a);
 			}else {
-				Subject s=a.getSubjects();
+				Subject s=a.getSubject();
 				a.setProfessor(null);
-				a.setSubjects(null);
+				a.setSubject(null);
 				s.setAnnouncement(null);
 				this.announcementRepository.delete(a);
 			}

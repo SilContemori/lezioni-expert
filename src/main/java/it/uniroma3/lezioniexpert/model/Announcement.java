@@ -1,5 +1,7 @@
 package it.uniroma3.lezioniexpert.model;
 
+import java.util.Objects;
+
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 @Entity
@@ -13,7 +15,7 @@ public class Announcement {
 	@ManyToOne
 	private Professor professor;
 	@OneToOne
-	private Subject subjects;
+	private Subject subject;
 	
 	public Long getId() {
 		return id;
@@ -40,22 +42,15 @@ public class Announcement {
 		this.hourlyRate = hourlyRate;
 	}
 	
-	public Subject getSubjects() {
-		return subjects;
+	public Subject getSubject() {
+		return subject;
 	}
-	public void setSubjects(Subject subjects) {
-		this.subjects = subjects;
+	public void setSubject(Subject subject) {
+		this.subject = subject;
 	}
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((location == null) ? 0 : location.hashCode());
-		result = prime * result + ((professor == null) ? 0 : professor.hashCode());
-		result = prime * result + ((hourlyRate == null) ? 0 : hourlyRate.hashCode());
-		result = prime * result + ((subjects == null) ? 0 : subjects.hashCode());
-		return result;
+		return Objects.hash(hourlyRate, location);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -66,35 +61,7 @@ public class Announcement {
 		if (getClass() != obj.getClass())
 			return false;
 		Announcement other = (Announcement) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (location == null) {
-			if (other.location != null)
-				return false;
-		} else if (!location.equals(other.location))
-			return false;
-		if (professor == null) {
-			if (other.professor != null)
-				return false;
-		} else if (!professor.equals(other.professor))
-			return false;
-		if (hourlyRate == null) {
-			if (other.hourlyRate != null)
-				return false;
-		} else if (!hourlyRate.equals(other.hourlyRate))
-			return false;
-		if (subjects == null) {
-			if (other.subjects != null)
-				return false;
-		} else if (!subjects.equals(other.subjects))
-			return false;
-		return true;
+		return Objects.equals(hourlyRate, other.hourlyRate) && Objects.equals(location, other.location);
 	}
 	
-
-
-
 }

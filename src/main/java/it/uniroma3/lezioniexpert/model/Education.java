@@ -1,6 +1,5 @@
 package it.uniroma3.lezioniexpert.model;
 
-import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
