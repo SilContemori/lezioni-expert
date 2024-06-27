@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Education</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/authPage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a class="link" href="/">Home</a></li>
+          <li><a class="link" href="/subjects">Materie</a></li>
+          <li><a class="link" href="/professors">Professori</a></li>
+          <li><a class="link" href="/announcements">Annunci</a></li>
+          <a class="link" th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a class="link" th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+
+          <a href="/profilePage">
+            <li th:if="${professor}" class="profile-image">
+              <img
+                th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+                alt="immagine del professore"
+              />
+            </li>
+          </a>
+          <div th:if="${userDetails}">
+            <a href="/profilePage">
+              <li th:unless="${professor}" class="profile-image-user">
+                <img
+                  src="/images/userProfile.png"
+                  alt="immagine del professore"
+                />
+              </li>
+            </a>
+          </div>
+        </ul>
+      </div>
+    </header>
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">Add Education</h1>
+        <form class="form" th:action="@{'/newEducation' + '/'+${professor.id}}" th:object="${education}" method="POST">
+          <div class="input-div">
+            <input
+              type="text"
+              class="input input-username"
+              th:field="${education.nome}"
+              placeholder="Education..."
+            />
+          </div>
+          <div class="input-div">
+            <input
+              type="text"
+              class="input input-username"
+              th:field="${education.schoolName}"
+              placeholder="School Name..."
+            />
+          </div>
+		  <div class="input-div">
+	          <input
+	            type="number"
+	            class="input input-username"
+	            th:field="${education.durationInMonth}"
+	            placeholder="Duration In Month..."
+	          />
+	        </div>
+          <div class="input-div">
+            <input
+              type="number"
+              class="input input-username"
+              th:field="${education.startYear}"
+              placeholder="Start Year..."
+            />
+          </div>
+          <div class="input-div">
+            <input
+              type="number"
+              class="input input-username"
+              th:field="${education.endYear}"
+              placeholder="End Year..."
+            />
+          </div>
+		  <div class="input-div">
+              <input
+                type="number"
+                class="input input-username"
+                th:field="${education.vote}"
+                placeholder="Vote..."
+              />
+            </div>
+          <button class="btn-form btn-login" type="submit">Conferma</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
