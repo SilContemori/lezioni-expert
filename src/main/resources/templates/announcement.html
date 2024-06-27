@@ -3,7 +3,8 @@
   <head>
     <title>Announcement</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
-    <link rel="stylesheet" href="/css/professors.css" />
+    <link rel="stylesheet" href="/css/announcement.css" />
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -51,27 +52,62 @@
         </ul>
       </div>
     </header>
-    <!--    <section class="first-section">-->
-    <!--      <h2>Professors</h2>-->
-    <!--      <div th:if="${professors==null || professors.isEmpty()}">-->
-    <!--        Non ci sono professori nel sistema-->
-    <!--      </div>-->
-    <!--      <ul class="persons-container">-->
-    <!--        <li th:each="professor: ${professors}">-->
-    <!--          <a th:href="@{'/professor' + '/' + ${professor.id}}">-->
-    <!--            <div class="professor-widget">-->
-    <!--              <div class="professor-widget-image-container">-->
-    <!--                <img src="/images/uomo.png" />-->
-    <!--              </div>-->
-    <!--              <div class="professor-widget-info">-->
-    <!--                <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>-->
-    <!--                <p th:text="'età: '+${professor.age}"></p>-->
-    <!--                <p th:text="'email: '+${professor.email}"></p>-->
-    <!--              </div>-->
-    <!--            </div>-->
-    <!--          </a>-->
-    <!--        </li>-->
-    <!--      </ul>-->
-    <!--    </section>-->
+
+    <section class="announcement-section">
+      <div class="announcement-container">
+        <div style="width: 100%">
+          <h2 class="title">Annuncio</h2>
+          <div class="announcement-div">
+            <p th:text="'Luogo: '+ ${announcement.location}"></p>
+            <p>
+              Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
+              all'ora
+            </p>
+            <p>Materia: <span th:text="${announcement.subject.name}"></span></p>
+            <p>
+              livello: <span th:text="${announcement.subject.level}"></span>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div
+            style="
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <div>
+              <h3>Professore</h3>
+              <a
+                th:if="${announcement.professor}"
+                class="prof-div"
+                th:href="@{'/professor/' + ${announcement.professor.id}}"
+              >
+                <div class="professor-widget">
+                  <div class="professor-widget-image-container">
+                    <img
+                      class="professor-image"
+                      th:src="@{'data:image/jpeg;base64,'+${announcement.professor.profileImage.generateBase64Image()}}"
+                      alt="immagine del professore"
+                    />
+                  </div>
+                  <div class="professor-widget-info">
+                    <p
+                      th:text="${announcement.professor.name} + ' ' + ${announcement.professor.surname}"
+                    ></p>
+                    <p th:text="'età: '+${announcement.professor.age}"></p>
+                    <p th:text="'email: '+${announcement.professor.email}"></p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>

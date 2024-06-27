@@ -88,7 +88,7 @@ public class AnnouncementController {
 //			model.addAttribute("credentials", credentials);
 //			return "announcementProfessor.html";
 //		}
-		model.addAttribute("ricetta", this.announcementRepository.findById(id).get());
+		model.addAttribute("announcement", this.announcementRepository.findById(id).get());
 		model.addAttribute("credentials", credentials);
 		return "announcement.html";
 	}
