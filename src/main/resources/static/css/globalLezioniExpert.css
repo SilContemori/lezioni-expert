@@ -168,3 +168,34 @@ header {
     display: flex;
   }
 }
+
+@media(max-width:768px){
+	header{
+		padding:12px 4%;
+	}
+	
+	#menu-icon{
+		display: initial;
+	}
+	
+	.navbar{
+		position:absolute;
+		top:-570px;
+		left:0;
+		right: 0;
+		display: flex;
+		flex-direction: column;
+		background-color: #2a434a;
+		row-gap: 1.4rem;
+		padding: 20px;
+		text-align: center;
+	}
+	
+	.navbar a:hover{
+		color:  #fe4e5c;
+	}
+	
+	.navbar.active{
+		top: 100%;
+	}
+}
