@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Professor</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/authPage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a class="link" href="/">Home</a></li>
+          <li><a class="link" href="/subjects">Materie</a></li>
+          <li><a class="link" href="/professors">Professori</a></li>
+          <li><a class="link" href="/announcements">Annunci</a></li>
+          <a class="link" th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a class="link" th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+
+          </div>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">New Professor</h1>
+        <form
+          th:action="@{/professor}"
+          method="POST"
+		  th:object="${professor}"
+          enctype="multipart/form-data"
+        >
+          <div class="input-div">
+            <input
+              class="input input-username"
+              type="text"
+              placeholder="name"
+              required
+              th:field="${professor.name}"
+            />
+<!--            <span-->
+<!--              th:if="${#fields.hasErrors('professor.name')}"-->
+<!--              th:errors="${professor.name}"-->
+<!--              th:style="'color:red'"-->
+<!--            >-->
+<!--            </span>-->
+          </div>
+          <div class="input-div">
+            <input
+              class="input input-username"
+              type="text"
+              placeholder="surname"
+              required
+              th:field="${professor.surname}"
+            />
+<!--            <span-->
+<!--              th:if="${#fields.hasErrors('professor.surname')}"-->
+<!--              th:errors="${professor.surname}"-->
+<!--              th:style="'color:red'"-->
+<!--            >-->
+<!--            </span>-->
+          </div>
+          <div class="input-div">
+            <input
+              class="input"
+              type="text"
+              placeholder="email"
+              required
+              th:field="${professor.email}"
+            />
+<!--            <span-->
+<!--              th:if="${#fields.hasErrors('professor.email')}"-->
+<!--              th:errors="${professor.email}"-->
+<!--              th:style="'color:red'"-->
+<!--            >-->
+<!--            </span>-->
+          </div>
+         <div class="input-div">
+            <input
+              class="input"
+              type="number"
+              placeholder="age"
+              required
+              th:field="${professor.age}"
+            />
+<!--            <span-->
+<!--              th:if="${#fields.hasErrors('professor.age')}"-->
+<!--              th:errors="${professor.age}"-->
+<!--              th:style="'color:red'"-->
+<!--            >-->
+<!--            </span>-->
+          </div>
+
+          <div class="input-div">
+				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+<!--            <span-->
+<!--              th:if="${#fields.hasErrors('professor.age')}"-->
+<!--              th:errors="${professor.age}"-->
+<!--              th:style="'color:red'"-->
+<!--            >-->
+<!--            </span>-->
+          </div>
+
+          <input
+            name="file"
+            type="file"
+            id="file-upload"
+            accept="image/png , image/jpeg"
+            required
+            onchange="updateFileName(this)"
+          />
+          <div class="btn-div">
+            <button class="btn-form btn-login" type="submit">Conferma</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
