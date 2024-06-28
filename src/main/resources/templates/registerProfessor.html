@@ -137,7 +137,7 @@
           </div>
 
           <div class="input-div">
-				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+			<textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
             <span
               th:if="${#fields.hasErrors('professor.age')}"
               th:errors="${professor.age}"

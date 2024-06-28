@@ -79,7 +79,7 @@ public class EducationController {
 	
 	/*GET PER RIMUOVI EDUCAZIONE DI UN PROFESSORE*/
 	@GetMapping("/removeEducation/{idProfessor}/{idEducation}")
-	public String rimuoviIngrediente(@PathVariable Long idProfessor,@PathVariable Long idEducation,Model model) {
+	public String removeEducation(@PathVariable Long idProfessor,@PathVariable Long idEducation,Model model) {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		Education e=educationRepository.findById(idEducation).orElse(null);
