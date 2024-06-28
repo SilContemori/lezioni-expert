@@ -1,4 +1,7 @@
 package it.uniroma3.lezioniexpert.controller;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 // import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,7 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import it.uniroma3.lezioniexpert.model.Announcement;
 import it.uniroma3.lezioniexpert.model.Credentials;
+import it.uniroma3.lezioniexpert.model.Professor;
 import it.uniroma3.lezioniexpert.repository.ProfessorRepository;
 import it.uniroma3.lezioniexpert.service.CredentialsService;
 import it.uniroma3.lezioniexpert.repository.UserRepository;
@@ -53,6 +58,19 @@ public class ProfessorController {
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if (credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
 			//				return "admin/indexAdmin.html";
+			if(credentials.getProfessor().getAnnouncements()!=null) {
+				List<String> subjects=new ArrayList<>();
+				for(Announcement a:credentials.getProfessor().getAnnouncements()) {
+					if(a.getSubject()!=null) {
+						subjects.add(a.getSubject().getName());
+					}
+				}
+				if(subjects.size()!=0) {
+					model.addAttribute("subjects", subjects);
+				}
+			}
+			Professor p= this.professorRepository.findById(credentials.getProfessor().getId()).get();
+			model.addAttribute("announcements", p.getAnnouncements());
 			model.addAttribute("professor", this.professorRepository.findById(credentials.getProfessor().getId()).get());
 			return "professorProfilePage.html";
 		}else if(credentials.getRole().equals(Credentials.DEFAULT_ROLE)){

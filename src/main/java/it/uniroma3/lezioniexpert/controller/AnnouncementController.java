@@ -173,12 +173,23 @@ public class AnnouncementController {
 			if(a.getProfessor()!=null) {
 				Professor p=a.getProfessor();
 				Subject s=a.getSubject();
-				a.setProfessor(null);
+				
 				a.setSubject(null);
-				p.getAnnouncements().remove(a);
 				s.setAnnouncement(null);
+				p.getAnnouncements().remove(a);
+				a.setProfessor(null);
+				System.out.println("a------------------------------"+a);
+				System.out.println("a------------------------------"+a.getSubject());
+				System.out.println("a------------------------------"+a.getProfessor());
+				this.professorRepository.save(p);
 				this.announcementRepository.delete(a);
 			}else {
+				if(a.getProfessor()!=null) {
+					Professor p=a.getProfessor();
+					p.getAnnouncements().remove(a);
+					a.setProfessor(null);
+					this.professorRepository.save(p);
+				}
 				Subject s=a.getSubject();
 				a.setProfessor(null);
 				a.setSubject(null);
@@ -186,7 +197,7 @@ public class AnnouncementController {
 				this.announcementRepository.delete(a);
 			}
 			//ritorna alla pagina dove è stato messo il remove degli annunci del professore
-			return "";
+			return "redirect:/profilePage";
 		}
 		//ritorna alla pagina dove è stato messo il remove degli annunci dell'admin
 		return "announcements.html";
