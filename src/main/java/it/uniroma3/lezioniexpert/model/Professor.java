@@ -22,6 +22,9 @@ public class Professor {
 	private String description;
 	private Integer age;
 	
+	@OneToMany(mappedBy="professor")
+	private List<Review> reviews;
+	
 	@OneToOne
 	private Images profileImage;
 	
@@ -86,6 +89,12 @@ public class Professor {
 		this.email = email;
 	}
 	
+	public List<Review> getReviews() {
+		return reviews;
+	}
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(age, description, email, name, surname);

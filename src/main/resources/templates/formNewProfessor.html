@@ -53,12 +53,6 @@
               required
               th:field="${professor.name}"
             />
-<!--            <span-->
-<!--              th:if="${#fields.hasErrors('professor.name')}"-->
-<!--              th:errors="${professor.name}"-->
-<!--              th:style="'color:red'"-->
-<!--            >-->
-<!--            </span>-->
           </div>
           <div class="input-div">
             <input
@@ -68,12 +62,6 @@
               required
               th:field="${professor.surname}"
             />
-<!--            <span-->
-<!--              th:if="${#fields.hasErrors('professor.surname')}"-->
-<!--              th:errors="${professor.surname}"-->
-<!--              th:style="'color:red'"-->
-<!--            >-->
-<!--            </span>-->
           </div>
           <div class="input-div">
             <input
@@ -83,12 +71,6 @@
               required
               th:field="${professor.email}"
             />
-<!--            <span-->
-<!--              th:if="${#fields.hasErrors('professor.email')}"-->
-<!--              th:errors="${professor.email}"-->
-<!--              th:style="'color:red'"-->
-<!--            >-->
-<!--            </span>-->
           </div>
          <div class="input-div">
             <input
@@ -98,24 +80,10 @@
               required
               th:field="${professor.age}"
             />
-<!--            <span-->
-<!--              th:if="${#fields.hasErrors('professor.age')}"-->
-<!--              th:errors="${professor.age}"-->
-<!--              th:style="'color:red'"-->
-<!--            >-->
-<!--            </span>-->
           </div>
-
           <div class="input-div">
 				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
-<!--            <span-->
-<!--              th:if="${#fields.hasErrors('professor.age')}"-->
-<!--              th:errors="${professor.age}"-->
-<!--              th:style="'color:red'"-->
-<!--            >-->
-<!--            </span>-->
           </div>
-
           <input
             name="file"
             type="file"

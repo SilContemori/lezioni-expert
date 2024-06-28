@@ -141,10 +141,8 @@
                 ></h2>
                 <p th:text="'Location: '+${announcement.location}"></p>
                 <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
-                <!--	                <p th:text="'Subject: '+${announcement.subjects.name }"></p>-->
                 <p th:text="'email: '+${announcement.subject.level}"></p>
 				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
-<!--				/removeAnnouncement/{idAnnouncement} -->
 			 </div>
             </div>
           </a>

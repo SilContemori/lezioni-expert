@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>New Review</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/authPage.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a class="link" href="/">Home</a></li>
+          <li><a class="link" href="/subjects">Materie</a></li>
+          <li><a class="link" href="/professors">Professori</a></li>
+          <li><a class="link" href="/announcements">Annunci</a></li>
+          <a class="link" th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a class="link" th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+
+          </div>
+        </ul>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="form-container">
+        <h1 class="title">Add Review</h1>
+        <form
+		th:action="@{'/newReview' + '/'+${professor.id}}"
+          method="POST"
+		  th:object="${review}"
+          enctype="multipart/form-data"
+        >
+		<select id="mySelect"th:field="${review.judgement}">
+		  <option value="">Seleziona un'opzione</option>
+		  <option value="buono">Buono</option>
+		  <option value="mediocre">Mediocre</option>
+		  <option value="cattivo">Cattivo</option>
+		</select>
+		<div class="input-div">
+			<textarea name="description" class="input" placeholder="Descrizione..." th:field="${review.text}"></textarea>
+		</div>
+		<div class="btn-div">
+            <button class="btn-form btn-login" type="submit">Conferma</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

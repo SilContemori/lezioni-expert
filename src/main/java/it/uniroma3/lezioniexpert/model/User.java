@@ -1,9 +1,12 @@
 package it.uniroma3.lezioniexpert.model;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 
@@ -20,8 +23,19 @@ public class User {
 	private String surname;
 	@NotBlank
 	private String email;
+	
+	@OneToMany(mappedBy="author")
+	private List<Review> reviewsDone;
+	
+    public List<Review> getReviewsDone() {
+		return reviewsDone;
+	}
 
-    public Long getId() {
+	public void setReviewsDone(List<Review> reviewsDone) {
+		this.reviewsDone = reviewsDone;
+	}
+
+	public Long getId() {
 		return id;
 	}
 

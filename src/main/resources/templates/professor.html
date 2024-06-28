@@ -66,23 +66,23 @@
           <p th:text="'Cognome: '+ ${professor.surname}"></p>
           <p th:text="'Età: '+ ${professor.age}"></p>
           <p th:text="'Descrizione: '+ ${professor.description}"></p>
+		  
         </div>
       </div>
     </section>
-    <!-- <div class="container">
-      <div class="image">
-        <img src="/images/uomo.png" />
-      </div>
-      <div th:if="${professor}">j
-        <span th:text="'Nome: '+ ${professor.name}"></span>
-        <br />
-        <span th:text="'Cognome: '+ ${professor.surname}"></span>
-        <br />
-        <span th:text="'Età: '+${professor.age}"></span>
-        <br />
-        <span th:text="'Descrizione: '+${professor.description}"></span>
-      </div>
-    </div> -->
-    <!--		<div th:unless="${artist}">Non esiste</div>-->
+	<ul th:if="${professor.reviews!=null}" class="carousell-container">
+	       <li th:each="review: ${professor.reviews}">
+	           <div class="carousell-widget">
+	             <div class="carousell-widget-info">
+	               <h2
+	                 style="text-align: center"
+	                 th:text="${review.author.name}"></h2>
+				   <p th:text="${review.judgement}"></p>
+				   <p th:text="${review.text}"></p>
+<!--				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>-->
+			 </div>
+	           </div>
+	       </li>
+	     </ul>
   </body>
 </html>
