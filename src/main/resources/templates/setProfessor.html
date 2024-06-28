@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Lezioni Expert</title>
+    <title>Set Professor</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
     <link rel="stylesheet" href="/css/carousell.css" />
-    <link rel="stylesheet" href="/css/professorProfilePage.css" />
+    <link rel="stylesheet" href="/css/professors.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -53,47 +51,30 @@
         </ul>
       </div>
     </header>
-
-    <section class="dettagli-section" th:if="${user}">
-      <h2 class="dettagli-section-title">Il tuo Profilo</h2>
-
-      <div class="professor-container">
-        <div class="div-img-bnts">
-          <div class="image-container">
-            <img src="/images/donna.png" alt="immagine Admin" />
-          </div>
-          <div class="div-btn">
-            <a href="/formNewAnnouncement" class="btn-bg-red-hover-reddish"
-              >Aggiungi Annuncio</a
-            >
-            <a href="/announcements	 " class="btn-bg-trs-hover-red">Rimuovi Annuncio</a>
-          </div>
-        </div>
-
-        <div class="info-container">
-          <div class="div-info-border-blue">
-            <p
-              class=""
-              style="font-size: 1.5rem"
-              th:text="'Nome: '+ ${user.name}"
-            ></p>
-          </div>
-          <div class="div-info-border-blue">
-            <p th:text="'Cognome: '+ ${user.surname}"></p>
-          </div>
-          <div class="div-info-border-blue">
-            <p th:text="'Email: '+ ${user.email}"></p>
-          </div>
-          <div class="info-div-btn">
-            <a href="/formNewProfessor" class="btn-bg-red-hover-reddish"
-              >Aggiungi Professore</a
-            >
-            <a href="/professors" class="btn-bg-trs-hover-red">Rimuovi Professore</a>
-            <a href="/professors" class="btn-bg-trs-hover-red">Modifica Professore</a>
-          </div>
-        </div>
+    <section class="first-section">
+      <h2>Aggiungi il Professore</h2>
+      <div th:if="${professors==null || professors.isEmpty()}">
+        Non ci sono professori nel sistema
       </div>
+      <ul class="carousell-container">
+        <li th:each="professor: ${professors}">
+          <a th:href="@{'/setProfessor' + '/' + ${announcement.id}+'/' + ${professor.id}}">
+            <div class="carousell-widget">
+              <div class="carousell-widget-image-container">
+                <img
+                  th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+                  alt="immagine del professore"
+                />
+              </div>
+              <div class="carousell-widget-info">
+                <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>
+                <p th:text="'età: '+${professor.age}"></p>
+                <p th:text="'email: '+${professor.email}"></p>
+              </div>
+            </div>
+          </a>
+        </li>
+      </ul>
     </section>
-    <section style="height: 50vh"></section>
   </body>
 </html>
