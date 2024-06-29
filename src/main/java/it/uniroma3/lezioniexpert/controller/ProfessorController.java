@@ -61,7 +61,17 @@ public class ProfessorController {
 			model.addAttribute("currentProfessor", credentials.getProfessor());
 		}
 		model.addAttribute("professor", this.professorRepository.findById(id).get());
-		return "professor.html";
+		if(credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
+			model.addAttribute("professorRole", credentials.getRole());
+			return "professor.html";
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("adminRole", credentials.getRole());
+				return "professorEditable.html";
+			}
+		}
+		model.addAttribute("userRole", credentials.getRole());
+		return "professorEditable.html";
 	}	
 	
 	
