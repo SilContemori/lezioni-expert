@@ -30,6 +30,18 @@ section {
   padding: 2rem 1rem;
 }
 
+.div-btn {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+}
+.div-btn > a {
+  width: 100%;
+}
+
 .professor-widget {
   max-width: 300px;
   border: var(--grey-blue) solid 3px;
@@ -43,6 +55,9 @@ section {
 
 @media only screen and (min-width: 800px) {
   .announcement-container {
+    flex-direction: row;
+  }
+  .div-btn {
     flex-direction: row;
   }
 }
