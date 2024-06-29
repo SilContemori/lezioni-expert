@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.lezioniexpert.model.Credentials;
-import it.uniroma3.lezioniexpert.model.Education;
 import it.uniroma3.lezioniexpert.model.Professor;
 import it.uniroma3.lezioniexpert.model.Review;
 import it.uniroma3.lezioniexpert.repository.ProfessorRepository;
