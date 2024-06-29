@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Announcement</title>
+    <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/announcement.css" />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <header>
+      <div class="header-container">
+        <a href="/" class="logo">
+          <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
+        </a>
+        <i class="bx bx-menu" id="menu-icon"></i>
+
+        <ul class="navbar">
+          <li><a class="link" href="/">Home</a></li>
+          <li><a class="link" href="/subjects">Materie</a></li>
+          <li><a class="link" href="/professors">Professori</a></li>
+          <li><a class="link" href="/announcements">Annunci</a></li>
+          <a class="link" th:if="${userDetails}" href="/logout">
+            <i class="bx bxs-log-out header-icon"></i>
+          </a>
+          <a class="link" th:unless="${userDetails}" href="/login">
+            <i class="bx bxs-log-in header-icon"></i>
+          </a>
+
+          <a href="/profilePage">
+            <li th:if="${professor}" class="profile-image">
+              <img
+                th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+                alt="immagine del professore"
+              />
+            </li>
+          </a>
+          <div th:if="${userDetails}">
+            <a href="/profilePage">
+              <li th:unless="${professor}" class="profile-image-user">
+                <img
+                  src="/images/userProfile.png"
+                  alt="immagine del professore"
+                />
+              </li>
+            </a>
+          </div>
+        </ul>
+      </div>
+    </header>
+
+    <section class="announcement-section">
+      <div class="announcement-container">
+        <div style="width: 100%">
+          <h2 class="title">Annuncio</h2>
+          <div class="announcement-div">
+            <p th:text="'Luogo: '+ ${announcement.location}"></p>
+            <p>
+              Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
+              all'ora
+            </p>
+            <p>Materia: <span th:text="${announcement.subject.name}"></span></p>
+            <p>
+              livello: <span th:text="${announcement.subject.level}"></span>
+            </p>
+          </div>
+          <div class="div-btn">
+            <a href="" class="btn-bg-red-hover-reddish">Aggiungi professore</a>
+            <a href="" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>
+          </div>
+        </div>
+
+        <div>
+          <div
+            style="
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              flex-direction: column;
+              align-items: center;
+            "
+          >
+            <div>
+              <h3 th:if="${professor}">Professore</h3>
+              <a
+                th:if="${announcement.professor}"
+                class="prof-div"
+                th:href="@{'/professor/' + ${announcement.professor.id}}"
+              >
+                <div class="professor-widget">
+                  <div class="professor-widget-image-container">
+                    <img
+                      class="professor-image"
+                      th:src="@{'data:image/jpeg;base64,'+${announcement.professor.profileImage.generateBase64Image()}}"
+                      alt="immagine del professore"
+                    />
+                  </div>
+                  <div class="professor-widget-info">
+                    <p
+                      th:text="${announcement.professor.name} + ' ' + ${announcement.professor.surname}"
+                    ></p>
+                    <p th:text="'età: '+${announcement.professor.age}"></p>
+                    <p th:text="'email: '+${announcement.professor.email}"></p>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
