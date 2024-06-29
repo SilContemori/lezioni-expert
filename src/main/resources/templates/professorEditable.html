@@ -62,9 +62,9 @@
             />
           </div>
           <div class="div-btns">
-            <a href="" class="btn-bg-red-hover-reddish">Aggiungi recensione</a>
-            <a href="" class="btn-bg-trs-hover-red">Aggiungi titolo di studi</a>
-            <a href="" class="btn-bg-trs-hover-red">Rimuovi professore</a>
+            <a th:href="@{'/formNewReview/'+${professor.id}}" class="btn-bg-red-hover-reddish">Aggiungi recensione</a>
+            <a th:if="${adminRole}" th:href="@{'/formNewEducation/'+${professor.id}}" class="btn-bg-trs-hover-red">Aggiungi titolo di studi</a>
+            <a th:if="${adminRole}" th:href="@{'/removeProfessor/'+${professor.id}}" class="btn-bg-trs-hover-red">Rimuovi professore</a>
           </div>
         </div>
 
@@ -73,9 +73,21 @@
           <p th:text="'Cognome: '+ ${professor.surname}"></p>
           <p th:text="'Età: '+ ${professor.age}"></p>
           <p th:text="'Descrizione: '+ ${professor.description}"></p>
+		  <h2>Per Contattarmi:</h2>
+		  <p th:text="'Email: '+ ${professor.email}"></p>
         </div>
       </div>
     </section>
+	<div th:unless="${#lists.isEmpty(professor.educations)}"class="div-info-border-blue">
+		<li th:each="education: ${professor.educations}">
+			<h4 th:text="${education.nome}"></h4>
+			<p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+			<p th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"></p>
+			<p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
+			<br>
+			<a th:if="${adminRole}" th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
+		</li>
+	  </div>
     <ul th:if="${professor.reviews!=null}" class="carousell-container">
       <li th:each="review: ${professor.reviews}">
         <div class="carousell-widget">
@@ -83,10 +95,28 @@
             <h2 style="text-align: center" th:text="${review.author.name}"></h2>
             <p th:text="${review.judgement}"></p>
             <p th:text="${review.text}"></p>
-            <!--				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>-->
           </div>
         </div>
       </li>
     </ul>
+	<h3>Annunci:</h3>
+     <ul th:if="${professor.announcements!=null}" class="carousell-container">
+       <li th:each="announcement: ${professor.announcements}">
+         <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
+           <div class="carousell-widget">
+             <div class="carousell-widget-info">
+               <h2
+                 style="text-align: center"
+                 th:text="${announcement.subject.name }"
+               ></h2>
+               <p th:text="'Location: '+${announcement.location}"></p>
+               <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+               <p th:text="'email: '+${announcement.subject.level}"></p>
+			<a th:if="${adminRole}" th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
+		 </div>
+           </div>
+         </a>
+       </li>
+     </ul>
   </body>
 </html>

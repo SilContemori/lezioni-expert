@@ -73,7 +73,6 @@
             <a th:href="@{'/formNewEducation/'+${professor.id}}" class="btn-bg-trs-hover-red"
               >Aggiungi Titolo di studio</a
             >
-<!--            <a href="" class="btn-bg-trs-hover-red">Modifica Profilo</a>-->
           </div>
         </div>
 
@@ -103,11 +102,6 @@
 			<li th:each="subject: ${subjects}">
 				<p th:text="${subject}"></p>
 			</li>
-            <!-- <p th:text="${professor.description}"></p> -->
-<!--            <p>-->
-<!--              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi,-->
-<!--              quisquam!-->
-<!--            </p>-->
           </div>
           <div th:unless="${#lists.isEmpty(professor.educations)}"class="div-info-border-blue">
 			<li th:each="education: ${professor.educations}">
@@ -118,7 +112,6 @@
 				<br>
 				<a th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
 			</li>
-<!--            <p>Titolo di studio: Harvard, peano</p>-->
           </div>
         </div>
       </div>
