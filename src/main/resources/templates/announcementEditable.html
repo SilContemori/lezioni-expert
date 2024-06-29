@@ -69,8 +69,12 @@
             </p>
           </div>
           <div class="div-btn">
-            <a href="" class="btn-bg-red-hover-reddish">Aggiungi professore</a>
-            <a href="" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>
+            <a th:if="${announcement.professor==null}" th:href="@{'/setProfessor/'+${announcement.id}}" class="btn-bg-red-hover-reddish">Aggiungi professore</a>
+			<div th:if="${credentials.professor==null}">
+				<a th:unless="${announcement.professor==null}" th:href="@{'/removeProfessor/'+${announcement.professor.id}}" class="btn-bg-red-hover-reddish">Rimuovi professore</a>
+			</div>
+<!--			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-red-hover-reddish" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>-->
+			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>
           </div>
         </div>
 

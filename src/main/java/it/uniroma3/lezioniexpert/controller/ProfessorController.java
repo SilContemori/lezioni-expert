@@ -131,6 +131,8 @@ public class ProfessorController {
 		for(Announcement a: announcements) {
 			a.setProfessor(null);
 		}
+		professor.setAnnouncements(null);
+		this.announcementRepository.deleteAll(announcements);
 	    this.professorRepository.save(professor);
 		Iterable<Credentials> allCredentials = this.credentialsRepository.findAll();
 		for(Credentials i: allCredentials) {
