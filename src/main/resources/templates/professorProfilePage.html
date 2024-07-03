@@ -70,7 +70,9 @@
             <a href="/formNewAnnouncement" class="btn-bg-red-hover-reddish"
               >Aggiungi Annuncio</a
             >
-            <a th:href="@{'/formNewEducation/'+${professor.id}}" class="btn-bg-trs-hover-red"
+            <a
+              th:href="@{'/formNewEducation/'+${professor.id}}"
+              class="btn-bg-trs-hover-red"
               >Aggiungi Titolo di studio</a
             >
           </div>
@@ -97,21 +99,37 @@
             <p>Descrizione:</p>
             <p th:text="${professor.description}"></p>
           </div>
-          <div th:unless="${#lists.isEmpty(subjects)}" class="div-info-border-blue">
+          <div
+            th:unless="${#lists.isEmpty(subjects)}"
+            class="div-info-border-blue"
+          >
             <p>Materie:</p>
-			<li th:each="subject: ${subjects}">
-				<p th:text="${subject}"></p>
-			</li>
+            <li th:each="subject: ${subjects}">
+              <p th:text="${subject}"></p>
+            </li>
           </div>
-          <div th:unless="${#lists.isEmpty(professor.educations)}"class="div-info-border-blue">
-			<li th:each="education: ${professor.educations}">
-				<h4 th:text="${education.nome}"></h4>
-				<p th:text="'- Conseguita a: '+${education.schoolName}"></p>
-				<p th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"></p>
-				<p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
-				<br>
-				<a th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
-			</li>
+          <div
+            style="display: flex; flex-direction: column; gap: 1.2rem"
+            th:unless="${#lists.isEmpty(professor.educations)}"
+            class="div-info-border-blue"
+          >
+            <li
+              style="display: flex; flex-direction: column; gap: 0.5rem"
+              th:each="education: ${professor.educations}"
+            >
+              <h4 th:text="${education.nome}"></h4>
+              <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+              <p
+                th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
+              ></p>
+              <p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
+              <br />
+              <a
+                th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"
+                class="btn-bg-trs-hover-red"
+                >Rimuovi</a
+              >
+            </li>
           </div>
         </div>
       </div>
@@ -122,21 +140,31 @@
       class="announcements-section"
     >
       <h3 class="announcements-section-title">I tuoi Annunci:</h3>
-
       <ul th:if="${professor.announcements!=null}" class="carousell-container">
         <li th:each="announcement: ${professor.announcements}">
           <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
-            <div class="carousell-widget">
-              <div class="carousell-widget-info">
-                <h2
-                  style="text-align: center"
-                  th:text="${announcement.subject.name }"
-                ></h2>
-                <p th:text="'Location: '+${announcement.location}"></p>
-                <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
-                <p th:text="'email: '+${announcement.subject.level}"></p>
-				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>
-			 </div>
+            <div
+              class="carousell-widget"
+              style="
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              "
+            >
+              <h2
+                style="font-size: 2rem"
+                th:text="${announcement.subject.name }"
+              ></h2>
+              <p th:text="'Location: '+${announcement.location}"></p>
+              <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+
+              <p th:text="'email: '+${announcement.subject.level}"></p>
+              <a
+                th:href="@{'/removeAnnouncement/'+${announcement.id}}"
+                class="btn-bg-trs-hover-red"
+                >Rimuovi</a
+              >
             </div>
           </a>
         </li>
