@@ -52,7 +52,7 @@
       </div>
     </header>
     <section class="first-section">
-      <h2>Professors</h2>
+      <h2 style="font-size: 3rem">Professori</h2>
       <div th:if="${professors==null || professors.isEmpty()}">
         Non ci sono professori nel sistema
       </div>
@@ -67,9 +67,22 @@
                 />
               </div>
               <div class="carousell-widget-info">
-                <p th:text="${professor.name} + ' '+ ${professor.surname}"></p>
-                <p th:text="'età: '+${professor.age}"></p>
-                <p th:text="'email: '+${professor.email}"></p>
+                <span style="display: flex; align-items: center; gap: 0.3rem">
+                  <i class="bx bxs-user"></i>
+                  <p
+                    th:text="${professor.name} + ' ' + ${professor.surname}"
+                  ></p>
+                </span>
+
+                <span style="display: flex; align-items: center; gap: 0.3rem">
+                  <i class="bx bxs-cake"></i>
+                  <p th:text="'età: '+${professor.age}"></p>
+                  <p>anni</p>
+                </span>
+                <span style="display: flex; align-items: center; gap: 0.3rem">
+                  <i class="bx bxs-envelope"></i>
+                  <p th:text="'email: '+${professor.email}"></p>
+                </span>
               </div>
             </div>
           </a>
