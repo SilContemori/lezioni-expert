@@ -12,8 +12,13 @@ public class Announcement {
 	@NotNull
 	private String location;
 	private Integer hourlyRate;//budget se per studente
+
+	@Column(length=2000)
+	private String description;
+							   
 	@ManyToOne
 	private Professor professor;
+	
 	@OneToOne
 	private Subject subject;
 	
@@ -41,7 +46,12 @@ public class Announcement {
 	public void setHourlyRate(Integer hourlyRate) {
 		this.hourlyRate = hourlyRate;
 	}
-	
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public Subject getSubject() {
 		return subject;
 	}

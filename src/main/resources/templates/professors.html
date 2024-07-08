@@ -59,7 +59,7 @@
       <ul class="carousell-container">
         <li th:each="professor: ${professors}">
           <a th:href="@{'/professor' + '/' + ${professor.id}}">
-            <div class="carousell-widget">
+            <div class="carousell-widget" style="padding: 0; padding-right: 0">
               <div class="carousell-widget-image-container">
                 <img
                   th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"

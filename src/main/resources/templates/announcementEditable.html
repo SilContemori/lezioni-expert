@@ -58,23 +58,58 @@
         <div style="width: 100%">
           <h2 class="title">Annuncio</h2>
           <div class="announcement-div">
-            <p th:text="'Luogo: '+ ${announcement.location}"></p>
-            <p>
-              Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
-              all'ora
-            </p>
-            <p>Materia: <span th:text="${announcement.subject.name}"></span></p>
-            <p>
-              livello: <span th:text="${announcement.subject.level}"></span>
-            </p>
+            <span style="display: flex; align-items: center; gap: 0.3rem">
+              <i class="bx bxs-location-plus"></i>
+              <p th:text="'Luogo: '+ ${announcement.location}"></p>
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.3rem">
+              <i class="bx bx-euro"></i>
+              <p>
+                Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
+                all'ora
+              </p>
+            </span>
+
+            <span style="display: flex; align-items: center; gap: 0.3rem">
+              <i class="bx bxs-book-alt"></i>
+              <p>
+                Materia: <span th:text="${announcement.subject.name}"></span>
+              </p>
+            </span>
+            <span style="display: flex; align-items: center; gap: 0.3rem">
+              <i class="bx bxs-school"></i>
+              <p>
+                livello: <span th:text="${announcement.subject.level}"></span>
+              </p>
+            </span>
+            <span>
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bxs-pencil"></i>
+                <p>Descrizione:</p>
+              </span>
+              <p th:text="${announcement.description}"></p>
+            </span>
           </div>
           <div class="div-btn">
-            <a th:if="${announcement.professor==null}" th:href="@{'/setProfessor/'+${announcement.id}}" class="btn-bg-red-hover-reddish">Aggiungi professore</a>
-			<div th:if="${credentials.professor==null}">
-				<a th:unless="${announcement.professor==null}" th:href="@{'/removeProfessor/'+${announcement.professor.id}}" class="btn-bg-red-hover-reddish">Rimuovi professore</a>
-			</div>
-<!--			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-red-hover-reddish" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>-->
-			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>
+            <a
+              th:if="${announcement.professor==null}"
+              th:href="@{'/setProfessor/'+${announcement.id}}"
+              class="btn-bg-red-hover-reddish"
+              >Aggiungi professore</a
+            >
+            <a
+              th:if="${credentials.professor==null}"
+              th:unless="${announcement.professor==null}"
+              th:href="@{'/removeProfessor/'+${announcement.professor.id}}"
+              class="btn-bg-red-hover-reddish"
+              >Rimuovi professore</a
+            >
+            <!--			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-red-hover-reddish" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>-->
+            <a
+              th:href="@{'/removeAnnouncement/'+${announcement.id}}"
+              class="btn-bg-trs-hover-red"
+              >Rimuovi annuncio</a
+            >
           </div>
         </div>
 
@@ -104,11 +139,29 @@
                     />
                   </div>
                   <div class="professor-widget-info">
-                    <p
-                      th:text="${announcement.professor.name} + ' ' + ${announcement.professor.surname}"
-                    ></p>
-                    <p th:text="'età: '+${announcement.professor.age}"></p>
-                    <p th:text="'email: '+${announcement.professor.email}"></p>
+                    <span
+                      style="display: flex; align-items: center; gap: 0.3rem"
+                    >
+                      <i class="bx bxs-user"></i>
+                      <p
+                        th:text="${announcement.professor.name} + ' ' + ${announcement.professor.surname}"
+                      ></p>
+                    </span>
+                    <span
+                      style="display: flex; align-items: center; gap: 0.3rem"
+                    >
+                      <i class="bx bxs-cake"></i>
+                      <p th:text="'età: '+${announcement.professor.age}"></p>
+                      <p>anni</p>
+                    </span>
+                    <span
+                      style="display: flex; align-items: center; gap: 0.3rem"
+                    >
+                      <i class="bx bxs-envelope"></i>
+                      <p
+                        th:text="'email: '+${announcement.professor.email}"
+                      ></p>
+                    </span>
                   </div>
                 </div>
               </a>

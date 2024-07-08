@@ -13,10 +13,12 @@
   border: var(--grey-blue) 2px solid;
   border-radius: 20px;
   overflow: hidden;
+  padding: 1.5rem 2rem;
+  min-width: 300px;
 }
 
 .carousell-widget-image-container {
-  max-width: 250px;
+  max-width: 300px;
   min-width: 180px;
   max-height: 250px;
   min-height: 180px;
