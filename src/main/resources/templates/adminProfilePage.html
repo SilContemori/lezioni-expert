@@ -18,7 +18,7 @@
         <a href="/" class="logo">
           <h1 style="color: #fe4e5c; font-size: 2rem">Lezioni Expert</h1>
         </a>
-        <i class="bx bx-menu" id="menu-icon"></i>
+        <i class="bx bx-menu toggle-menu-btn" id="menu-icon"></i>
 
         <ul class="navbar">
           <li><a class="link" href="/">Home</a></li>
@@ -52,6 +52,37 @@
           </div>
         </ul>
       </div>
+      <ul class="navbar mobile-menu">
+        <li><a class="link" href="/">Home</a></li>
+        <li><a class="link" href="/subjects">Materie</a></li>
+        <li><a class="link" href="/professors">Professori</a></li>
+        <li><a class="link" href="/announcements">Annunci</a></li>
+        <a class="link" th:if="${userDetails}" href="/logout">
+          <i class="bx bxs-log-out header-icon"></i>
+        </a>
+        <a class="link" th:unless="${userDetails}" href="/login">
+          <i class="bx bxs-log-in header-icon"></i>
+        </a>
+
+        <a href="/profilePage">
+          <li th:if="${professor}" class="profile-image">
+            <img
+              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+              alt="immagine del professore"
+            />
+          </li>
+        </a>
+        <div th:if="${userDetails}">
+          <a href="/profilePage">
+            <li th:unless="${professor}" class="profile-image-user">
+              <img
+                src="/images/userProfile.png"
+                alt="immagine del professore"
+              />
+            </li>
+          </a>
+        </div>
+      </ul>
     </header>
 
     <section class="dettagli-section" th:if="${user}">
@@ -66,7 +97,9 @@
             <a href="/formNewAnnouncement" class="btn-bg-red-hover-reddish"
               >Aggiungi Annuncio</a
             >
-            <a href="/announcements	 " class="btn-bg-trs-hover-red">Rimuovi Annuncio</a>
+            <a href="/announcements	 " class="btn-bg-trs-hover-red"
+              >Rimuovi Annuncio</a
+            >
           </div>
         </div>
 
@@ -88,12 +121,17 @@
             <a href="/formNewProfessor" class="btn-bg-red-hover-reddish"
               >Aggiungi Professore</a
             >
-            <a href="/professors" class="btn-bg-trs-hover-red">Rimuovi Professore</a>
-            <a href="/professors" class="btn-bg-trs-hover-red">Modifica Professore</a>
+            <a href="/professors" class="btn-bg-trs-hover-red"
+              >Rimuovi Professore</a
+            >
+            <a href="/professors" class="btn-bg-trs-hover-red"
+              >Modifica Professore</a
+            >
           </div>
         </div>
       </div>
     </section>
     <section style="height: 50vh"></section>
   </body>
+  <script src="/js/app.js"></script>
 </html>
