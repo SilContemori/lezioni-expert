@@ -105,7 +105,7 @@
           >
             <p>Materie:</p>
             <li th:each="subject: ${subjects}">
-              <p th:text="${subject}"></p>
+              <p th:text="'☛'+' '+${subject}"></p>
             </li>
           </div>
           <div
@@ -113,6 +113,7 @@
             th:unless="${#lists.isEmpty(professor.educations)}"
             class="div-info-border-blue"
           >
+		  <h3 style="font-size: 1.5rem">Titoli di Studio:</h3>	
             <li
               style="
                 display: flex;
@@ -125,11 +126,11 @@
             >
               <div style="display: flex; flex-direction: column; gap: 0.5rem">
                 <h4 style="font-size: 1.2rem" th:text="${education.nome}"></h4>
-                <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+                <p th:text="'☛ Conseguita a: '+${education.schoolName}"></p>
                 <p
-                  th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
+                  th:text="'☛ Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
                 ></p>
-                <p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
+                <p th:text="'☛ Voto Conseguito: '+${education.vote}"></p>
               </div>
               <br />
               <a
