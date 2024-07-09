@@ -43,6 +43,7 @@ body {
 
 header {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -160,11 +161,23 @@ header {
 .btn-bg-blue-hover-blueish:hover {
   background: var(--grey-blueish);
 }
+
+.mobile-menu {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 @media only screen and (min-width: 800px) {
   #menu-icon {
     display: none;
   }
   .navbar {
     display: flex;
+  }
+
+  .mobile-menu {
+    display: none !important;
   }
 }
