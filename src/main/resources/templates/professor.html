@@ -93,7 +93,7 @@
           >
             <p>Materie:</p>
             <li th:each="subject: ${subjects}">
-              <p th:text="${subject}"></p>
+              <p th:text="'☛'+' '+${subject}"></p>
             </li>
           </div>
           <div
@@ -101,6 +101,7 @@
             th:unless="${#lists.isEmpty(professor.educations)}"
             class="div-info-border-blue"
           >
+		  <h3 style="font-size: 1.5rem">Titoli di Studio:</h3>
             <li
               style="
                 display: flex;
@@ -112,13 +113,15 @@
               "
               th:each="education: ${professor.educations}"
             >
+			
               <div style="display: flex; flex-direction: column; gap: 0.5rem">
+				
                 <h4 th:text="${education.nome}"></h4>
-                <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+                <p th:text="'☛ Conseguita a: '+${education.schoolName}"></p>
                 <p
-                  th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
+                  th:text="'☛ Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
                 ></p>
-                <p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
+                <p th:text="'☛ Voto Conseguito: '+${education.vote}"></p>
               </div>
             </li>
           </div>
@@ -140,23 +143,28 @@
       <ul th:if="${professor.announcements!=null}" class="carousell-container">
         <li th:each="announcement: ${professor.announcements}">
           <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
-            <div
+			<div
               class="carousell-widget"
-              style="
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-              "
+              style="display: flex; flex-direction: column; gap: 1rem"
             >
               <h2
                 style="font-size: 2rem"
                 th:text="${announcement.subject.name }"
               ></h2>
-              <p th:text="'Location: '+${announcement.location}"></p>
-              <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
 
-              <p th:text="'email: '+${announcement.subject.level}"></p>
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bxs-location-plus"></i>
+                <p th:text="'Luogo: '+${announcement.location}"></p>
+              </span>
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bx-euro"></i>
+                <p th:text="'Prezzo: '+	${announcement.hourlyRate}"></p>
+              </span>
+
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bxs-school"></i>
+                <p th:text="'livello: '+${announcement.subject.level}"></p>
+              </span>
             </div>
           </a>
         </li>
@@ -182,7 +190,7 @@
             >
               <h2
                 style="font-size: 1.5rem"
-                th:text="${review.author.name}"
+                th:text="${review.author.name} +' '+${review.author.surname}"
               ></h2>
               <span style="display: flex; flex-direction: row; gap: 0.5rem">
                 <i

@@ -145,12 +145,12 @@
               >
                 <div style="display: flex; flex-direction: column; gap: 0.5rem">
                   <h4 th:text="${education.nome}"></h4>
-                  <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+                  <p th:text="'☛ Conseguita a: '+${education.schoolName}"></p>
                   <p
-                    th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
+                    th:text="'☛ Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
                   ></p>
                   <p
-                    th:text="'- Voto del Conseguimento: '+${education.vote}"
+                    th:text="'☛ Voto Conseguito: '+${education.vote}"
                   ></p>
                 </div>
                 <br th:if="${adminRole}" />
@@ -181,23 +181,28 @@
       <ul th:if="${professor.announcements!=null}" class="carousell-container">
         <li th:each="announcement: ${professor.announcements}">
           <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
-            <div
+			<div
               class="carousell-widget"
-              style="
-                padding: 1rem;
-                display: flex;
-                flex-direction: column;
-                gap: 1rem;
-              "
+              style="display: flex; flex-direction: column; gap: 1rem"
             >
               <h2
                 style="font-size: 2rem"
                 th:text="${announcement.subject.name }"
               ></h2>
-              <p th:text="'Location: '+${announcement.location}"></p>
-              <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
 
-              <p th:text="'email: '+${announcement.subject.level}"></p>
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bxs-location-plus"></i>
+                <p th:text="'Luogo: '+${announcement.location}"></p>
+              </span>
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bx-euro"></i>
+                <p th:text="'Prezzo: '+	${announcement.hourlyRate}"></p>
+              </span>
+
+              <span style="display: flex; align-items: center; gap: 0.3rem">
+                <i class="bx bxs-school"></i>
+                <p th:text="'livello: '+${announcement.subject.level}"></p>
+              </span>
             </div>
           </a>
         </li>
@@ -214,13 +219,43 @@
       <ul th:if="${professor.reviews!=null}" class="carousell-container">
         <li th:each="review: ${professor.reviews}">
           <div class="carousell-widget">
-            <div class="carousell-widget-info">
-              <h2
+            <div class="carousell-widget-info"
+			style="
+               display: flex;
+               flex-direction: column;
+               gap: 1rem;
+               padding: 0;
+             ">
+			<h2
                 style="font-size: 1.5rem"
                 th:text="${review.author.name}"
               ></h2>
-              <p th:text="${review.judgement}"></p>
-              <p th:text="${review.text}"></p>
+              <span style="display: flex; flex-direction: row; gap: 0.5rem">
+                <i
+                  th:if="${review.judgement.equals('buono')}"
+                  class="bx bx-smile"
+                ></i>
+                <i
+                  th:if="${review.judgement.equals('mediocre')}"
+                  class="bx bx-confused"
+                ></i>
+                <i
+                  th:if="${review.judgement.equals('cattivo')}"
+                  class="bx bx-angry"
+                ></i>
+                Voto:
+                <p th:text="${review.judgement}"></p>
+              </span>
+              <span>
+                <p th:text="${review.text}"></p>
+              </span>
+			  <a
+               th:if="${adminRole}"
+               th:href="@{'/removeReview/'+${professor.id}+'/'+${review.id}}"
+               class="btn-bg-trs-hover-red"
+               >Rimuovi</a
+             >
+			  
               <!--				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>-->
             </div>
           </div>
