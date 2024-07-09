@@ -1,0 +1,11 @@
+.subject-widget h2 {
+  font-size: 1.5rem;
+}
+
+.subject-widget:hover {
+  background-color: var(--red);
+  border: 1px var(--red) solid;
+}
+.subject-widget:hover h2 {
+  color: white;
+}

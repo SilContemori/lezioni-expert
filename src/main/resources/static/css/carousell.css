@@ -4,7 +4,7 @@
   flex-direction: row;
   flex-wrap: wrap;
   gap: 1rem;
-  justify-content: start;
+  /* justify-content: center; */
 }
 
 .carousell-widget {

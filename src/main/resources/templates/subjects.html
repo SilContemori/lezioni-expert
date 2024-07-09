@@ -3,7 +3,9 @@
   <head>
     <title>Announcements</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/carousell.css" />
     <link rel="stylesheet" href="/css/professors.css" />
+    <link rel="stylesheet" href="/css/subjects.css" />
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -53,16 +55,16 @@
     </header>
 
     <section class="first-section">
-      <h2>Annunci Per Materia</h2>
+      <h2 style="font-size: 3rem; margin-bottom: 2rem">Materie</h2>
       <div th:if="${subjects==null || subjects.isEmpty()}">
         Non ci sono annunci nel sistema
       </div>
 
-      <ul class="persons-container">
+      <ul class="carousell-container" style="justify-content: center">
         <li th:each="subject: ${subjects}">
           <a th:href="@{'/announcementsOfSubject' + '/' + ${subject}}">
-            <div class="professor-widget">
-              <div class="professor-widget-info">
+            <div class="carousell-widget subject-widget">
+              <div class="carousell-widget-info">
                 <h2 style="text-align: center" th:text="${subject}"></h2>
               </div>
             </div>

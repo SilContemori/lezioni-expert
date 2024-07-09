@@ -59,7 +59,7 @@
       <div th:if="${announcements==null || announcements.isEmpty()}">
         Non ci sono annunci nel sistema
       </div>
-      <ul class="carousell-container">
+      <ul class="carousell-container" style="justify-content: center">
         <li th:each="announcement: ${announcements}">
           <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
             <div

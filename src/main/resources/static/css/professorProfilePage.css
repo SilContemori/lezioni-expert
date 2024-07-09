@@ -72,7 +72,6 @@ section {
 .announcements-section {
   margin-top: 3.5rem;
   width: 100%;
-  min-height: 100vh;
   /* display: flex;
   flex-direction: column;
   align-items: start; */
@@ -98,7 +97,7 @@ section {
 .info-container > .div-info-border-blue {
   border: var(--grey-blue) solid 1px;
   border-radius: 5px;
-  padding: 0.5rem 0.5rem;
+  padding: 1rem;
 }
 
 .info-div-btn {

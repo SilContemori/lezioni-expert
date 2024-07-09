@@ -3,7 +3,10 @@
   <head>
     <title>Student</title>
     <link rel="stylesheet" href="/css/globalLezioniExpert.css" />
+    <link rel="stylesheet" href="/css/carousell.css" />
     <link rel="stylesheet" href="/css/professor.css" />
+    <link rel="stylesheet" href="/css/professorProfilePage.css" />
+
     <link
       href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
       rel="stylesheet"
@@ -52,100 +55,179 @@
 
     <section class="dettagli-section" th:if="${professor}">
       <h2 class="dettagli-section-title">Dettagli Professore</h2>
-      <div class="professor-container">
-        <div class="div-img-btns">
-          <div class="image-container">
-            <img
-              class="professor-image"
-              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-              alt="immagine del professore"
-            />
+      <div class="prof-div">
+        <div class="professor-container">
+          <div>
+            <div
+              style="
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+              "
+            >
+              <div class="image-container">
+                <img
+                  class="professor-image"
+                  th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+                  alt="immagine del professore"
+                />
+              </div>
+            </div>
+            <div class="div-btns">
+              <a
+                th:href="@{'/formNewReview/'+${professor.id}}"
+                class="btn-bg-red-hover-reddish"
+                >Aggiungi recensione</a
+              >
+              <a
+                th:if="${adminRole}"
+                th:href="@{'/formNewEducation/'+${professor.id}}"
+                class="btn-bg-trs-hover-red"
+                >Aggiungi titolo di studi</a
+              >
+              <a
+                th:if="${adminRole}"
+                th:href="@{'/removeProfessor/'+${professor.id}}"
+                class="btn-bg-trs-hover-red"
+                >Rimuovi professore</a
+              >
+            </div>
           </div>
-          <div class="div-btns">
-            <a
-              th:href="@{'/formNewReview/'+${professor.id}}"
-              class="btn-bg-red-hover-reddish"
-              >Aggiungi recensione</a
+          <div
+            style="border-radius: 30px; padding: 0; border: none"
+            class="info-container"
+          >
+            <div class="div-info-border-blue">
+              <p
+                class=""
+                style="font-size: 1.5rem"
+                th:text="'Nome: '+ ${professor.name}"
+              ></p>
+            </div>
+            <div class="div-info-border-blue">
+              <p th:text="'Cognome: '+ ${professor.surname}"></p>
+            </div>
+            <div class="div-info-border-blue">
+              <p th:text="'Email: '+ ${professor.email}"></p>
+            </div>
+            <div class="div-info-border-blue">
+              <p th:text="'Età: '+ ${professor.age}"></p>
+            </div>
+            <div class="div-info-border-blue">
+              <p>Descrizione:</p>
+              <p th:text="${professor.description}"></p>
+            </div>
+            <div
+              th:unless="${#lists.isEmpty(subjects)}"
+              class="div-info-border-blue"
             >
-            <a
-              th:if="${adminRole}"
-              th:href="@{'/formNewEducation/'+${professor.id}}"
-              class="btn-bg-trs-hover-red"
-              >Aggiungi titolo di studi</a
+              <p>Materie:</p>
+              <li th:each="subject: ${subjects}">
+                <p th:text="${subject}"></p>
+              </li>
+            </div>
+            <div
+              style="display: flex; flex-direction: column; gap: 1.2rem"
+              th:unless="${#lists.isEmpty(professor.educations)}"
+              class="div-info-border-blue"
             >
-            <a
-              th:if="${adminRole}"
-              th:href="@{'/removeProfessor/'+${professor.id}}"
-              class="btn-bg-trs-hover-red"
-              >Rimuovi professore</a
-            >
+              <li
+                style="
+                  display: flex;
+                  padding: 0.5rem;
+                  flex-direction: row;
+                  justify-content: space-between;
+                  align-items: center;
+                  gap: 0.5rem;
+                "
+                th:each="education: ${professor.educations}"
+              >
+                <div style="display: flex; flex-direction: column; gap: 0.5rem">
+                  <h4 th:text="${education.nome}"></h4>
+                  <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
+                  <p
+                    th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
+                  ></p>
+                  <p
+                    th:text="'- Voto del Conseguimento: '+${education.vote}"
+                  ></p>
+                </div>
+                <br th:if="${adminRole}" />
+                <a
+                  th:if="${adminRole}"
+                  th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"
+                  class="btn-bg-trs-hover-red"
+                  >Rimuovi</a
+                >
+              </li>
+            </div>
           </div>
-        </div>
-
-        <div class="info-container">
-          <p th:text="'Nome: '+ ${professor.name}"></p>
-          <p th:text="'Cognome: '+ ${professor.surname}"></p>
-          <p th:text="'Età: '+ ${professor.age}"></p>
-          <p th:text="'Descrizione: '+ ${professor.description}"></p>
-          <h2>Per Contattarmi:</h2>
-          <p th:text="'Email: '+ ${professor.email}"></p>
         </div>
       </div>
     </section>
-    <div
-      th:unless="${#lists.isEmpty(professor.educations)}"
-      class="div-info-border-blue"
+
+    <section
+      th:unless="${#lists.isEmpty(professor.announcements)}"
+      class="announcements-section"
+      style="width: 100%; max-width: 900px; margin-top: 2rem"
     >
-      <li th:each="education: ${professor.educations}">
-        <h4 th:text="${education.nome}"></h4>
-        <p th:text="'- Conseguita a: '+${education.schoolName}"></p>
-        <p
-          th:text="'- Durata: '+${education.durationInMonth}+' mesi'+	' ('+${education.startYear}+' - '+ ${education.endYear}+')'"
-        ></p>
-        <p th:text="'- Voto del Conseguimento: '+${education.vote}"></p>
-        <br />
-        <a
-          th:if="${adminRole}"
-          th:href="@{'/removeEducation/'+${professor.id}+'/'+${education.id}}"
-          class="btn-bg-trs-hover-red"
-          >Rimuovi</a
-        >
-      </li>
-    </div>
-    <ul th:if="${professor.reviews!=null}" class="carousell-container">
-      <li th:each="review: ${professor.reviews}">
-        <div class="carousell-widget">
-          <div class="carousell-widget-info">
-            <h2 style="text-align: center" th:text="${review.author.name}"></h2>
-            <p th:text="${review.judgement}"></p>
-            <p th:text="${review.text}"></p>
-          </div>
-        </div>
-      </li>
-    </ul>
-    <h3>Annunci:</h3>
-    <ul th:if="${professor.announcements!=null}" class="carousell-container">
-      <li th:each="announcement: ${professor.announcements}">
-        <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
-          <div class="carousell-widget">
-            <div class="carousell-widget-info">
+      <h3
+        style="font-size: 2rem; margin-bottom: 1.5rem"
+        class="announcements-section-title"
+      >
+        Annunci del professore
+      </h3>
+      <ul th:if="${professor.announcements!=null}" class="carousell-container">
+        <li th:each="announcement: ${professor.announcements}">
+          <a th:href="@{'/announcement' + '/' + ${announcement.id}}">
+            <div
+              class="carousell-widget"
+              style="
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+              "
+            >
               <h2
-                style="text-align: center"
+                style="font-size: 2rem"
                 th:text="${announcement.subject.name }"
               ></h2>
               <p th:text="'Location: '+${announcement.location}"></p>
               <p th:text="'HourlyRate: '+	${announcement.hourlyRate}"></p>
+
               <p th:text="'email: '+${announcement.subject.level}"></p>
-              <a
-                th:if="${adminRole}"
-                th:href="@{'/removeAnnouncement/'+${announcement.id}}"
-                class="btn-bg-trs-hover-red"
-                >Rimuovi</a
-              >
+            </div>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <section style="width: 100%; max-width: 900px; margin-top: 2rem">
+      <h4
+        th:unless="${#lists.isEmpty(professor.reviews)}"
+        style="font-size: 2rem; margin-bottom: 1.5rem"
+      >
+        Recensioni
+      </h4>
+      <ul th:if="${professor.reviews!=null}" class="carousell-container">
+        <li th:each="review: ${professor.reviews}">
+          <div class="carousell-widget">
+            <div class="carousell-widget-info">
+              <h2
+                style="font-size: 1.5rem"
+                th:text="${review.author.name}"
+              ></h2>
+              <p th:text="${review.judgement}"></p>
+              <p th:text="${review.text}"></p>
+              <!--				<a th:href="@{'/removeAnnouncement/'+${announcement.id}}"	class="btn-bg-trs-hover-red">Rimuovi</a>-->
             </div>
           </div>
-        </a>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </section>
+
+    <span style="height: 30vh"></span>
   </body>
 </html>
