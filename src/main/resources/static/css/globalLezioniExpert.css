@@ -76,7 +76,7 @@ header {
   font-weight: 500;
 }
 
-.navbar a:hover {
+.navbar .link:hover {
   background-color: var(--red);
   border-radius: 0.2rem;
   transition: 0.2s all linear;
