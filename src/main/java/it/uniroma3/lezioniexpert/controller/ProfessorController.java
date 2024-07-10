@@ -45,6 +45,12 @@ public class ProfessorController {
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if(credentials.getProfessor()!=null) {
 			model.addAttribute("professor", credentials.getProfessor());
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("admin",credentials.getRole());
+			}else {
+				model.addAttribute("user",credentials.getRole());
+			}
 		}
 		model.addAttribute("professors", this.professorRepository.findAll());
 		return "professors.html";

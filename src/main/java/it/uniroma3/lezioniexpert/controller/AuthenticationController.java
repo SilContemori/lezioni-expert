@@ -48,6 +48,13 @@ public class AuthenticationController {
 			if (credentials.getProfessor()!=null) {
 				model.addAttribute("professor", credentials.getProfessor());
 				return "homePage.html";
+			}else {
+				if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+					model.addAttribute("admin", credentials.getUser());
+				}else {
+					System.out.println("passo user: "+credentials.getUser()+"-------------------------------------");
+					model.addAttribute("user", credentials.getUser());
+				}
 			}
 		}
         return "homePage.html";

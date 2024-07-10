@@ -42,9 +42,14 @@ public class AnnouncementController {
 		model.addAttribute("announcements", this.announcementRepository.findAll());
 		if(credentials.getProfessor()!=null) {
 			model.addAttribute("professor", credentials.getProfessor());
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("admin",credentials.getRole());
+			}else {
+				model.addAttribute("user",credentials.getRole());
+			}
 		}
 		return "announcements.html";
-
 	}
 
 	/*GET DI TUTTI I TIPI DI ANNUNCI PER MATERIA*/
@@ -55,10 +60,15 @@ public class AnnouncementController {
 		model.addAttribute("announcements", this.announcementRepository.findAll());
 		if(credentials.getProfessor()!=null) {
 			model.addAttribute("professor", credentials.getProfessor());
-		}
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("admin",credentials.getRole());
+			}else {
+				model.addAttribute("user",credentials.getRole());
+			}
+		}	
 		List<String> subjectsNames =new ArrayList<>();
 		for(Subject s:this.subjectRepository.findAll()) {
-			System.out.println("subject----------------------------"+s.getName());
 			if(!subjectsNames.contains(s.getName()) ) {
 				subjectsNames.add(s.getName());
 			}	
@@ -79,15 +89,18 @@ public class AnnouncementController {
 				if(a.getProfessor().getId()==idProfessor) {
 					model.addAttribute("announcement", this.announcementRepository.findById(id).get());
 					model.addAttribute("credentials", credentials);
+					model.addAttribute("professor", credentials.getProfessor());
 					return "announcementEditable.html";
 				}
 			}
 		}
 		if(credentials.getRole().equals(ADMIN_ROLE)) {
 			model.addAttribute("announcement", this.announcementRepository.findById(id).get());
+			model.addAttribute("admin",credentials.getRole());
 			model.addAttribute("credentials", credentials);
 			return "announcementEditable.html";
 		}
+		model.addAttribute("user",credentials.getRole());
 		model.addAttribute("announcement", this.announcementRepository.findById(id).get());
 		model.addAttribute("credentials", credentials);
 		return "announcement.html";
