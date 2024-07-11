@@ -47,9 +47,9 @@
         </a>
 
         <a href="/profilePage">
-          <li th:if="${professor}" class="profile-image">
+          <li th:if="${currentProfessor}" class="profile-image">
             <img
-              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+              th:src="@{'data:image/jpeg;base64,'+${currentProfessor.profileImage.generateBase64Image()}}"
               alt="immagine del professore"
             />
           </li>
@@ -69,7 +69,7 @@
 
     <div class="container">
       <div class="form-container">
-        <h1 class="title">New Professor</h1>
+        <h1 class="title">Nuovo Professore</h1>
         <form
           th:action="@{/professor}"
           method="POST"
@@ -80,7 +80,7 @@
             <input
               class="input input-username"
               type="text"
-              placeholder="name"
+              placeholder="nome..."
               required
               th:field="${professor.name}"
             />
@@ -89,7 +89,7 @@
             <input
               class="input input-username"
               type="text"
-              placeholder="surname"
+              placeholder="cognome..."
               required
               th:field="${professor.surname}"
             />
@@ -98,7 +98,7 @@
             <input
               class="input"
               type="text"
-              placeholder="email"
+              placeholder="email..."
               required
               th:field="${professor.email}"
             />
@@ -107,27 +107,31 @@
             <input
               class="input"
               type="number"
-              placeholder="age"
+              placeholder="età..."
               required
               th:field="${professor.age}"
             />
           </div>
           <div class="input-div">
-				    <textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+				    <textarea name="description" class="input" placeholder="Descrizione..." th:field="${professor.description}"></textarea>
           </div>
-          <input
-            name="file"
-            type="file"
-            id="file-upload"
-            accept="image/png , image/jpeg"
-            required
-            onchange="updateFileName(this)"
-          />
+			<label for="file-upload" class="custom-file-upload">
+				Scegli File
+			</label>
+			<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required style="display:none;" onchange="updateFileName(this)" /></span>
           <div class="btn-div">
             <button class="btn-form btn-login" type="submit">Conferma</button>
           </div>
         </form>
       </div>
     </div>
-  </body>   <script src="/js/app.js"></script>
+  </body>  
+  <script>
+	function updateFileName(input) {
+	    var fileName = input.files[0].name;
+	    var label = document.querySelector(".custom-file-upload");
+	    label.textContent = fileName;
+	}
+</script>
+  <script src="/js/app.js"></script>
 </html>

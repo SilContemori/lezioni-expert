@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import it.uniroma3.lezioniexpert.model.Announcement;
 import it.uniroma3.lezioniexpert.model.Credentials;
+import it.uniroma3.lezioniexpert.model.Education;
 import it.uniroma3.lezioniexpert.model.Images;
 import it.uniroma3.lezioniexpert.model.Professor;
+import it.uniroma3.lezioniexpert.model.Review;
 import it.uniroma3.lezioniexpert.repository.AnnouncementRepository;
 import it.uniroma3.lezioniexpert.repository.CredentialsRepository;
 import it.uniroma3.lezioniexpert.repository.ImagesRepository;
@@ -65,6 +67,12 @@ public class ProfessorController {
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if(credentials.getProfessor()!=null) {
 			model.addAttribute("currentProfessor", credentials.getProfessor());
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("admin",credentials.getRole());
+			}else {
+				model.addAttribute("user",credentials.getRole());
+			}
 		}
 		model.addAttribute("professor", this.professorRepository.findById(id).get());
 		if(credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
@@ -86,7 +94,7 @@ public class ProfessorController {
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
 		if (credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
-			//				return "admin/indexAdmin.html";
+			model.addAttribute("professor", credentials.getRole());
 			if(credentials.getProfessor().getAnnouncements()!=null) {
 				List<String> subjects=new ArrayList<>();
 				for(Announcement a:credentials.getProfessor().getAnnouncements()) {
@@ -103,9 +111,11 @@ public class ProfessorController {
 			model.addAttribute("professor", this.professorRepository.findById(credentials.getProfessor().getId()).get());
 			return "professorProfilePage.html";
 		}else if(credentials.getRole().equals(Credentials.DEFAULT_ROLE)){
+			model.addAttribute("user", credentials.getRole());
 			model.addAttribute("user", this.userRepository.findById(credentials.getUser().getId()).get());
 			return "userProfilePage.html";
 		}else {
+			model.addAttribute("admin", credentials.getRole());
 			model.addAttribute("user", this.userRepository.findById(credentials.getUser().getId()).get());
 			return "adminProfilePage.html";
 		}
@@ -114,13 +124,17 @@ public class ProfessorController {
 	/*GET E POST PER AGGIUNGERE UN NUOVO PROFESSORE*/
 	@GetMapping(value="/formNewProfessor")
 	public String formNewProfessor(Model model) {
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if(credentials.getRole().equals(Credentials.PROFESSOR_ROLE)) {
+			model.addAttribute("currentProfessor", credentials.getRole());
+		}
 		model.addAttribute("professor", new Professor());
 		return "formNewProfessor.html";
 	}
 
 	@PostMapping(value={"/professor"},consumes = "multipart/form-data")
 	public String newProfessor(@Valid @ModelAttribute Professor professor,@RequestPart("file") MultipartFile file, BindingResult bindingResult, Model model) {
-		//		this.movieValidator.validate(movie, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			try {
 				Images i=new Images();
@@ -147,7 +161,15 @@ public class ProfessorController {
 		for(Announcement a: announcements) {
 			a.setProfessor(null);
 		}
+		for(Review r:professor.getReviews()) {
+			r.setProfessor(null);
+		}
+		for(Education e:professor.getEducations()) {
+			e.setProfessor(null);
+		}
+		professor.setEducations(null);
 		professor.setAnnouncements(null);
+		professor.setReviews(null);
 		this.announcementRepository.deleteAll(announcements);
 	    this.professorRepository.save(professor);
 		Iterable<Credentials> allCredentials = this.credentialsRepository.findAll();

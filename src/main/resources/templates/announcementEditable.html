@@ -39,11 +39,21 @@
               />
             </li>
           </a>
-          <div th:if="${userDetails}">
+		  <div th:if="${userDetails}">
+	          <a href="/profilePage">
+	            <li th:if="${admin}" class="profile-image-user">
+	              <img
+	                src="/images/adminProfile.png"
+	                alt="immagine del professore"
+	              />
+	            </li>
+	          </a>
+	        </div>
+		<div th:if="${userDetails}">
             <a href="/profilePage">
-              <li th:unless="${professor}" class="profile-image-user">
+              <li th:if="${user}" class="profile-image-user">
                 <img
-                  src="/images/userProfile.png"
+                  src="/images/userImageProfile.png"
                   alt="immagine del professore"
                 />
               </li>
@@ -71,16 +81,26 @@
             />
           </li>
         </a>
-        <div th:if="${userDetails}">
-          <a href="/profilePage">
-            <li th:unless="${professor}" class="profile-image-user">
-              <img
-                src="/images/userProfile.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
+		<div th:if="${userDetails}">
+  	          <a href="/profilePage">
+  	            <li th:if="${admin}" class="profile-image-user">
+  	              <img
+  	                src="/images/adminProfile.png"
+  	                alt="immagine del professore"
+  	              />
+  	            </li>
+  	          </a>
+  	        </div>
+  		<div th:if="${userDetails}">
+              <a href="/profilePage">
+                <li th:if="${user}" class="profile-image-user">
+                  <img
+                    src="/images/userImageProfile.png"
+                    alt="immagine del professore"
+                  />
+                </li>
+              </a>
+            </div>
       </ul>
     </header>
 
@@ -96,8 +116,8 @@
             <span style="display: flex; align-items: center; gap: 0.3rem">
               <i class="bx bx-euro"></i>
               <p>
-                Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
-                all'ora
+                Prezzo: <span th:text="${announcement.hourlyRate}+' '+'€/h'"></span>
+               
               </p>
             </span>
 
@@ -135,7 +155,6 @@
               class="btn-bg-red-hover-reddish"
               >Rimuovi professore</a
             >
-            <!--			<a th:href="@{'/removeAnnouncement/'+${announcement.id}}" class="btn-bg-red-hover-reddish" class="btn-bg-trs-hover-red">Rimuovi annuncio</a>-->
             <a
               th:href="@{'/removeAnnouncement/'+${announcement.id}}"
               class="btn-bg-trs-hover-red"

@@ -2,7 +2,6 @@ console.log("hello");
 
 const toggleMenuBtn = document.querySelector(".toggle-menu-btn");
 const mobileMenu = document.querySelector(".mobile-menu");
-// mobileMenu.visibility = "hidden";
 mobileMenu.style.display = "none";
 let isDisplayNone = true;
 
@@ -19,3 +18,5 @@ toggleMenuBtn.addEventListener("click", () => {
     isDisplayNone = true;
   }
 });
+
+

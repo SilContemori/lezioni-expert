@@ -93,7 +93,7 @@
               type="text"
               class="input input-username"
               th:field="${announcement.location}"
-              placeholder="Location..."
+              placeholder="Luogo..."
             />
           </div>
           <div class="input-div">
@@ -101,7 +101,7 @@
               type="number"
               class="input input-username"
               th:field="${announcement.hourlyRate}"
-              placeholder="Hourly Rate..."
+              placeholder="Prezzo Orario..."
             />
           </div>
           <div class="input-div">
@@ -109,7 +109,7 @@
               type="text"
               class="input input-username"
               th:field="${subject.name}"
-              placeholder="Subject's Name..."
+              placeholder="Nome Materia..."
             />
           </div>
           <div class="input-div">
@@ -117,41 +117,19 @@
               type="text"
               class="input input-username"
               th:field="${subject.level}"
-              placeholder="Subject's Level..."
+              placeholder="Livello Insegnamento..."
             />
           </div>
           <div class="input-div">
             <textarea
               name="description"
               class="input"
-              placeholder="Descrizione"
+              placeholder="Descrizione..."
               th:field="${announcement.description}"
             ></textarea>
           </div>
 
           <button class="btn-form btn-login" type="submit">Conferma</button>
-          <!--		  <div class="input-div">-->
-          <!--              <input-->
-          <!--                placeholder="Hourly Rate..."-->
-          <!--                class="input input-username"-->
-          <!--                name="username"-->
-          <!--                type="number"-->
-          <!--                required-->
-          <!--              />-->
-          <!--            </div>-->
-
-          <!--          <div>-->
-          <!--            <span th:if="${param.error != null}"-->
-          <!--              >Username o password errati</span-->
-          <!--            >-->
-          <!--          </div>-->
-          <!--          <div class="btn-div">-->
-          <!--            <button class="btn-form btn-login" type="submit">Login</button>-->
-          <!--            <a class="btn-form btn-register" th:href="@{/register}">Sing up</a>-->
-          <!--            <a class="btn-form btn-register" th:href="@{/registerProfessor}"-->
-          <!--              >Sing up professor</a-->
-          <!--            >-->
-          <!--          </div>-->
         </form>
       </div>
     </div>

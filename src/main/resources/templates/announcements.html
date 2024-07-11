@@ -71,35 +71,34 @@
         <a class="link" th:unless="${userDetails}" href="/login">
           <i class="bx bxs-log-in header-icon"></i>
         </a>
-
-        <a href="/profilePage">
-          <li th:if="${professor}" class="profile-image">
-            <img
-              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-              alt="immagine del professore"
-            />
-          </li>
-        </a>
-        <div th:if="${admin}">
-          <a href="/profilePage">
-            <li th:if="${admin}" class="profile-image-user">
-              <img
-                src="/images/adminProfile.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
-		<div th:if="${user!=null}">
-          <a href="/profilePage">
-            <li th:if="${user}" class="profile-image-user">
-              <img
-                src="/images/userProfilePage.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
+		<a href="/profilePage">
+	        <li th:if="${professor}" class="profile-image">
+	          <img
+	            th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+	            alt="immagine del professore"
+	          />
+	        </li>
+	      </a>
+		  <div th:if="${userDetails}">
+	          <a href="/profilePage">
+	            <li th:if="${admin}" class="profile-image-user">
+	              <img
+	                src="/images/adminProfile.png"
+	                alt="immagine del professore"
+	              />
+	            </li>
+	          </a>
+	        </div>
+		<div th:if="${userDetails}">
+	          <a href="/profilePage">
+	            <li th:if="${user}" class="profile-image-user">
+	              <img
+	                src="/images/userImageProfile.png"
+	                alt="immagine del professore"
+	              />
+	            </li>
+	          </a>
+	        </div>
       </ul>
     </header>
 
@@ -117,7 +116,7 @@
               class="carousell-widget"
               style="display: flex; flex-direction: column; gap: 1rem"
             >
-              <h2
+              <h2 
                 style="font-size: 2rem"
                 th:text="${announcement.subject.name }"
               ></h2>
@@ -128,7 +127,7 @@
               </span>
               <span style="display: flex; align-items: center; gap: 0.3rem">
                 <i class="bx bx-euro"></i>
-                <p th:text="'Prezzo: '+	${announcement.hourlyRate}"></p>
+                <p th:text="'Prezzo: '+	${announcement.hourlyRate}+' '+'€/h'"></p>
               </span>
 
               <span style="display: flex; align-items: center; gap: 0.3rem">

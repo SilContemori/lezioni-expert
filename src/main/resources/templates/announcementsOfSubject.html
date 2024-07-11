@@ -41,16 +41,34 @@
               />
             </li>
           </a>
-          <div th:if="${userDetails}">
-            <a href="/profilePage">
-              <li th:unless="${professor}" class="profile-image-user">
+		  <a href="/profilePage">
+              <li th:if="${professor}" class="profile-image">
                 <img
-                  src="/images/userProfile.png"
+                  th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
                   alt="immagine del professore"
                 />
               </li>
             </a>
-          </div>
+  		  <div th:if="${userDetails}">
+    	          <a href="/profilePage">
+    	            <li th:if="${admin}" class="profile-image-user">
+    	              <img
+    	                src="/images/adminProfile.png"
+    	                alt="immagine del professore"
+    	              />
+    	            </li>
+    	          </a>
+    	        </div>
+    		<div th:if="${userDetails}">
+                <a href="/profilePage">
+                  <li th:if="${user}" class="profile-image-user">
+                    <img
+                      src="/images/userImageProfile.png"
+                      alt="immagine del professore"
+                    />
+                  </li>
+                </a>
+              </div>
         </ul>
       </div>
       <ul class="navbar mobile-menu">
@@ -73,16 +91,34 @@
             />
           </li>
         </a>
-        <div th:if="${userDetails}">
-          <a href="/profilePage">
-            <li th:unless="${professor}" class="profile-image-user">
-              <img
-                src="/images/userProfile.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
+		<a href="/profilePage">
+	        <li th:if="${professor}" class="profile-image">
+	          <img
+	            th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
+	            alt="immagine del professore"
+	          />
+	        </li>
+	      </a>
+		  <div th:if="${userDetails}">
+	          <a href="/profilePage">
+	            <li th:if="${admin}" class="profile-image-user">
+	              <img
+	                src="/images/adminProfile.png"
+	                alt="immagine del professore"
+	              />
+	            </li>
+	          </a>
+	        </div>
+		<div th:if="${userDetails}">
+	          <a href="/profilePage">
+	            <li th:if="${user}" class="profile-image-user">
+	              <img
+	                src="/images/userImageProfile.png"
+	                alt="immagine del professore"
+	              />
+	            </li>
+	          </a>
+	        </div>
       </ul>
     </header>
 
@@ -112,7 +148,7 @@
               </span>
               <span style="display: flex; align-items: center; gap: 0.3rem">
                 <i class="bx bx-euro"></i>
-                <p th:text="'Prezzo: '+	${announcement.hourlyRate}"></p>
+                <p th:text="'Prezzo: '+	${announcement.hourlyRate}+' '+'€/h'"></p>
               </span>
 
               <span style="display: flex; align-items: center; gap: 0.3rem">

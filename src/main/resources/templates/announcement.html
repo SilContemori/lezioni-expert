@@ -81,16 +81,26 @@
             />
           </li>
         </a>
-        <div th:if="${userDetails}">
-          <a href="/profilePage">
-            <li th:unless="${professor}" class="profile-image-user">
-              <img
-                src="/images/userProfile.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
+		<div th:if="${userDetails}">
+  	          <a href="/profilePage">
+  	            <li th:if="${admin}" class="profile-image-user">
+  	              <img
+  	                src="/images/adminProfile.png"
+  	                alt="immagine del professore"
+  	              />
+  	            </li>
+  	          </a>
+  	        </div>
+  		<div th:if="${userDetails}">
+              <a href="/profilePage">
+                <li th:if="${user}" class="profile-image-user">
+                  <img
+                    src="/images/userImageProfile.png"
+                    alt="immagine del professore"
+                  />
+                </li>
+              </a>
+            </div>
       </ul>
     </header>
 
@@ -106,8 +116,7 @@
             <span style="display: flex; align-items: center; gap: 0.3rem">
               <i class="bx bx-euro"></i>
               <p>
-                Prezzo: <span th:text="${announcement.hourlyRate}"></span>€
-                all'ora
+                Prezzo: <span th:text="${announcement.hourlyRate}+' '+'€/h'"></span>
               </p>
             </span>
 

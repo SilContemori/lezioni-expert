@@ -67,10 +67,8 @@ public class EducationController {
 				p.getEducations().add(education);
 				this.educationRepository.save(education);
 				this.professorRepository.save(p);
-//				return "professorProfilePage.html";
 				return "redirect:/professor/"+p.getId();
 			}else {
-//				return "professorProfilePage.html";
 				return "redirect:/professor/"+p.getId();
 			}
 			

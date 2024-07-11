@@ -95,7 +95,6 @@ public class AuthenticationController {
 	/*GET DELLA PAGINA PER REGISTRARE I DATI E POST PER INSERIRE I DATI NEL DB DI UN PROFESSORE*/
 	@GetMapping(value = {"/registerProfessor"}) 
 	public String showRegisterFormProfessor (Model model) {
-		System.out.println("------------------------------------------------------ciao--------------------");
 		model.addAttribute("professor", new Professor());
 		model.addAttribute("credentials", new Credentials() );
 		return "registerProfessor.html";
@@ -122,13 +121,12 @@ public class AuthenticationController {
             credentials.setProfessor(professor);
             credentialsService.saveCredentials(credentials);
             model.addAttribute("professor", professor);
-//            return "homePage.html";
             return "logInPage.html";
         }
         return "registerProfessor.html";
     }
 	
-	/*GET CHE MOSTRA LA HOME PAGE (O PAGINA DEDICATA A SECONDA DEL RUOLO) DOPO LOG IN*/
+	/*GET CHE MOSTRA LA HOME PAGE DOPO LOG IN*/
 	@GetMapping(value = "/success")
     public String defaultAfterLogin(Model model) {
         
@@ -138,7 +136,13 @@ public class AuthenticationController {
 	    	if (credentials.getProfessor()!=null) {
 	    		model.addAttribute("professor", credentials.getProfessor());
 	    		return "homePage.html";
-	        }
+	        }else {
+				if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+					model.addAttribute("admin",credentials.getRole());
+				}else {
+					model.addAttribute("user",credentials.getRole());
+				}
+			}
     	}
         return "homePage.html";
     }

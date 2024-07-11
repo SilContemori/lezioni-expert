@@ -31,25 +31,6 @@
           <a class="link" th:unless="${userDetails}" href="/login">
             <i class="bx bxs-log-in header-icon"></i>
           </a>
-
-          <a href="/profilePage">
-            <li th:if="${professor}" class="profile-image">
-              <img
-                th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-          <div th:if="${userDetails}">
-            <a href="/profilePage">
-              <li th:unless="${professor}" class="profile-image-user">
-                <img
-                  src="/images/userProfile.png"
-                  alt="immagine del professore"
-                />
-              </li>
-            </a>
-          </div>
         </ul>
       </div>
       <ul class="navbar mobile-menu">
@@ -63,25 +44,6 @@
         <a class="link" th:unless="${userDetails}" href="/login">
           <i class="bx bxs-log-in header-icon"></i>
         </a>
-
-        <a href="/profilePage">
-          <li th:if="${professor}" class="profile-image">
-            <img
-              th:src="@{'data:image/jpeg;base64,'+${professor.profileImage.generateBase64Image()}}"
-              alt="immagine del professore"
-            />
-          </li>
-        </a>
-        <div th:if="${userDetails}">
-          <a href="/profilePage">
-            <li th:unless="${professor}" class="profile-image-user">
-              <img
-                src="/images/userProfile.png"
-                alt="immagine del professore"
-              />
-            </li>
-          </a>
-        </div>
       </ul>
     </header>
 
@@ -99,7 +61,7 @@
               type="text"
               class="input input-username"
               th:field="${education.nome}"
-              placeholder="Education..."
+              placeholder="Titolo Studi..."
             />
           </div>
           <div class="input-div">
@@ -107,7 +69,7 @@
               type="text"
               class="input input-username"
               th:field="${education.schoolName}"
-              placeholder="School Name..."
+              placeholder="Nome Scuola..."
             />
           </div>
           <div class="input-div">
@@ -115,7 +77,7 @@
               type="number"
               class="input input-username"
               th:field="${education.durationInMonth}"
-              placeholder="Duration In Month..."
+              placeholder="Durata in mesi..."
             />
           </div>
           <div class="input-div">
@@ -123,7 +85,7 @@
               type="number"
               class="input input-username"
               th:field="${education.startYear}"
-              placeholder="Start Year..."
+              placeholder="Anno Inizio..."
             />
           </div>
           <div class="input-div">
@@ -131,7 +93,7 @@
               type="number"
               class="input input-username"
               th:field="${education.endYear}"
-              placeholder="End Year..."
+              placeholder="Anno Fine..."
             />
           </div>
           <div class="input-div">
@@ -139,7 +101,7 @@
               type="number"
               class="input input-username"
               th:field="${education.vote}"
-              placeholder="Vote..."
+              placeholder="Voto..."
             />
           </div>
           <button class="btn-form btn-login" type="submit">Conferma</button>

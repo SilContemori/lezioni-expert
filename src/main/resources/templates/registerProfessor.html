@@ -48,7 +48,7 @@
             <input
               class="input input-username"
               type="text"
-              placeholder="name"
+              placeholder="Nome..."
               required
               th:field="${professor.name}"
             />
@@ -63,7 +63,7 @@
             <input
               class="input input-username"
               type="text"
-              placeholder="surname"
+              placeholder="Cognome..."
               required
               th:field="${professor.surname}"
             />
@@ -78,7 +78,7 @@
             <input
               class="input"
               type="text"
-              placeholder="email"
+              placeholder="Email..."
               required
               th:field="${professor.email}"
             />
@@ -93,7 +93,7 @@
             <input
               class="input"
               type="text"
-              placeholder="username"
+              placeholder="Username..."
               required
               th:field="${credentials.username}"
             />
@@ -109,7 +109,7 @@
             <input
               class="input"
               type="password"
-              placeholder="password"
+              placeholder="Password..."
               required
               th:field="${credentials.password}"
             />
@@ -124,7 +124,7 @@
             <input
               class="input"
               type="number"
-              placeholder="age"
+              placeholder="Età..."
               required
               th:field="${professor.age}"
             />
@@ -137,7 +137,7 @@
           </div>
 
           <div class="input-div">
-			<textarea name="description" class="input" placeholder="Descrizione" th:field="${professor.description}"></textarea>
+			<textarea name="description" class="input" placeholder="Descrizione..." th:field="${professor.description}"></textarea>
             <span
               th:if="${#fields.hasErrors('professor.age')}"
               th:errors="${professor.age}"
@@ -145,15 +145,10 @@
             >
             </span>
           </div>
-
-          <input
-            name="file"
-            type="file"
-            id="file-upload"
-            accept="image/png , image/jpeg"
-            required
-            onchange="updateFileName(this)"
-          />
+		  <label for="file-upload" class="custom-file-upload">
+			Scegli File
+		</label>
+		<span><input name="file" type="file" id="file-upload" accept="image/png , image/jpeg" required style="display:none;" onchange="updateFileName(this)" /></span>
           <div class="btn-div">
             <button class="btn-form btn-login" type="submit">Registrati</button>
             <a class="btn-form btn-register" th:href="@{/login}">Accedi</a>
@@ -161,5 +156,13 @@
         </form>
       </div>
     </div>
-  </body>   <script src="/js/app.js"></script>
+  </body>
+  <script>
+  	function updateFileName(input) {
+  	    var fileName = input.files[0].name;
+  	    var label = document.querySelector(".custom-file-upload");
+  	    label.textContent = fileName;
+  	}
+  </script>   
+  <script src="/js/app.js"></script>
 </html>

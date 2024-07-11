@@ -1,9 +1,4 @@
-/*body{*/
-/*	background-color: black;*/
-/*}*/
-
 .container {
-  /*  	background-color: rgb(0, 0, 0);*/
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -69,7 +64,6 @@
   border: var(--red) solid 2px;
   transition-duration: 100ms;
   transition-property: all;
-  /* transition-behavior: ; */
   background-color: #ffffff;
 }
 
@@ -92,34 +86,56 @@
   color: var(--red);
 }
 .btn-register:hover {
-  /*	border: var(--red) solid 2px;*/
   color: #ffffff;
   background-color: var(--red);
 }
 
 #mySelect {
-  width: 100%; /* Aderisce alla larghezza del contenitore */
-  padding: 10px; /* Spazio intorno alle opzioni */
-  border-radius: 5px; /* Bordi arrotondati */
-  border: 2px solid #fe4e5c; /* Bordi del menu */
-  background-color: transparent; /* Fondo scuro per contrasto */
-  color:black; /* Testo bianco per leggibilità */
-  appearance: none; /* Rimuove lo styling predefinito del browser */
-  -webkit-appearance: none; /* Per Chrome, Safari e Edge */
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombra interna per dare profondità */
+  width: 100%; 
+  padding: 10px; 
+  border-radius: 5px; 
+  border: 2px solid #fe4e5c; 
+  background-color: transparent; 
+  color:black; 
+  appearance: none; 
+  -webkit-appearance: none; 
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); 
 }
 
 #mySelect option {
-  padding: 10px; /* Spazio intorno al testo delle opzioni */
-  background-color:#2a434a; /* Fondo scuro per le opzioni */
-  color: white; /* Testo bianco per leggibilità */
+  padding: 10px; 
+  background-color:#2a434a; 
+  color: white; 
 }
 
 #mySelect:focus {
-  outline: none; /* Rimuove l'outline predefinito del browser */
+  outline: none; 
 }
 
 #mySelect option:focus {
-  background-color:var(--grey-blueish); /* Cambia colore di sfondo per l'opzione selezionata */
+  background-color:var(--grey-blueish); 
 }
+
+input[type="file"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    cursor: pointer;
+    border: none!important;
+    outline: none!important;
+}
+
+.custom-file-upload {
+    text-transform: uppercase;
+    width: 155px;
+    color:var(--grey-blue);
+    padding: 3px 20px;
+    border-radius: 1000px;
+    display: inline-block;
+    transition: all.2s;
+    position: relative;
+    cursor: pointer;
+}
+
 

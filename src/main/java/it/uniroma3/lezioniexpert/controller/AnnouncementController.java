@@ -114,6 +114,12 @@ public class AnnouncementController {
 		model.addAttribute("announcements", this.announcementRepository.findAll());
 		if(credentials.getProfessor()!=null) {
 			model.addAttribute("professor", credentials.getProfessor());
+		}else {
+			if(credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+				model.addAttribute("admin",credentials.getRole());
+			}else {
+				model.addAttribute("user",credentials.getRole());
+			}
 		}
 		List<Announcement> announcementsOfSubject=new ArrayList<>();
 		for(Announcement a:this.announcementRepository.findAll()) {
