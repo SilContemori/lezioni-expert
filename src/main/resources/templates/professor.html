@@ -40,17 +40,17 @@
               />
             </li>
           </a>
-		  <div th:if="${userDetails}">
-	          <a href="/profilePage">
-	            <li th:if="${admin}" class="profile-image-user">
-	              <img
-	                src="/images/adminProfile.png"
-	                alt="immagine del professore"
-	              />
-	            </li>
-	          </a>
-	        </div>
-		<div th:if="${userDetails}">
+          <div th:if="${userDetails}">
+            <a href="/profilePage">
+              <li th:if="${admin}" class="profile-image-user">
+                <img
+                  src="/images/adminProfile.png"
+                  alt="immagine del professore"
+                />
+              </li>
+            </a>
+          </div>
+          <div th:if="${userDetails}">
             <a href="/profilePage">
               <li th:if="${user}" class="profile-image-user">
                 <img
@@ -82,26 +82,26 @@
             />
           </li>
         </a>
-		<div th:if="${userDetails}">
-  	          <a href="/profilePage">
-  	            <li th:if="${admin}" class="profile-image-user">
-  	              <img
-  	                src="/images/adminProfile.png"
-  	                alt="immagine del professore"
-  	              />
-  	            </li>
-  	          </a>
-  	        </div>
-  		<div th:if="${userDetails}">
-              <a href="/profilePage">
-                <li th:if="${user}" class="profile-image-user">
-                  <img
-                    src="/images/userImageProfile.png"
-                    alt="immagine del professore"
-                  />
-                </li>
-              </a>
-            </div>
+        <div th:if="${userDetails}">
+          <a href="/profilePage">
+            <li th:if="${admin}" class="profile-image-user">
+              <img
+                src="/images/adminProfile.png"
+                alt="immagine del professore"
+              />
+            </li>
+          </a>
+        </div>
+        <div th:if="${userDetails}">
+          <a href="/profilePage">
+            <li th:if="${user}" class="profile-image-user">
+              <img
+                src="/images/userImageProfile.png"
+                alt="immagine del professore"
+              />
+            </li>
+          </a>
+        </div>
       </ul>
     </header>
 
