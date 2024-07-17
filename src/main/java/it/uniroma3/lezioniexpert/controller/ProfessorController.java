@@ -185,7 +185,7 @@ public class ProfessorController {
 		}
 		this.professorRepository.delete(professor);
 		model.addAttribute("user", this.userRepository.findById(credentials.getUser().getId()).get());
-		return "adminProfilePage.html";
+		return "redirect:/profilePage";
 	}
 	
 	/*GET PER SETTARE UN PROFESSORE A UN ANNUNCIO ESISTENTE*/
